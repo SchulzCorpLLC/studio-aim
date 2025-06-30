@@ -7,10 +7,10 @@ export function RevenueSection() {
     return (
         <div className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <AnalyticsStatCard title="Total Revenue (30d)" value="$85,231" icon={DollarSign} description="+25% from last month" />
-                <AnalyticsStatCard title="Revenue this Month" value="$60,150" icon={Wallet} />
-                <AnalyticsStatCard title="Avg. Job Value" value="$665" icon={TrendingUp} />
-                <AnalyticsStatCard title="Primary Payment" value="Credit Card" icon={CreditCard} />
+                <AnalyticsStatCard title="Total Revenue (30d)" value="$0" icon={DollarSign} />
+                <AnalyticsStatCard title="Revenue this Month" value="$0" icon={Wallet} />
+                <AnalyticsStatCard title="Avg. Job Value" value="$0" icon={TrendingUp} />
+                <AnalyticsStatCard title="Primary Payment" value="--" icon={CreditCard} />
             </div>
             <Card>
                 <CardHeader>

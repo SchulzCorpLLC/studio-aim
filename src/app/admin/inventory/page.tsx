@@ -8,8 +8,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Download } from 'lucide-react';
 
 export default function AdminInventoryPage() {
-    const [selectedJobId, setSelectedJobId] = useState<string | null>(mockJobs[0].id);
-    const inventories = selectedJobId ? mockInventories[selectedJobId] : [];
+    const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
+    const inventories = selectedJobId ? mockInventories[selectedJobId] || [] : [];
     
     return (
         <div className="space-y-6">
@@ -32,11 +32,13 @@ export default function AdminInventoryPage() {
                             <SelectValue placeholder="Select a Job ID..." />
                         </SelectTrigger>
                         <SelectContent>
-                            {mockJobs.map(job => (
+                            {mockJobs.length > 0 ? mockJobs.map(job => (
                                 <SelectItem key={job.id} value={job.id}>
                                     {job.id} - {job.customer}
                                 </SelectItem>
-                            ))}
+                            )) : (
+                                <SelectItem value="no-jobs" disabled>No jobs available</SelectItem>
+                            )}
                         </SelectContent>
                     </Select>
                 </CardHeader>

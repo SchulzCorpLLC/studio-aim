@@ -31,47 +31,53 @@ export function InvoiceSummary({ invoices, onViewInvoice }: InvoiceSummaryProps)
         <CardDescription>Review and download your past and present invoices.</CardDescription>
       </CardHeader>
       <CardContent>
-        <Accordion type="single" collapsible className="w-full">
-            {invoices.map((invoice) => (
-              <AccordionItem value={invoice.id} key={invoice.id}>
-                <AccordionTrigger>
-                    <div className="flex items-center gap-4 text-left">
-                        <FileText className="h-5 w-5 text-primary" />
-                        <div className="flex-grow">
-                            <p className="font-semibold">{invoice.id}</p>
-                            <p className="text-sm text-muted-foreground">Issued: {new Date(invoice.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</p>
-                        </div>
-                    </div>
-                </AccordionTrigger>
-                <AccordionContent className="pl-6 pr-2">
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <p className="text-muted-foreground">Status</p>
-                                {getStatusBadge(invoice.status)}
-                            </div>
-                            <div>
-                                <p className="text-muted-foreground">Total</p>
-                                <p className="font-bold text-lg">${invoice.amount.toFixed(2)}</p>
-                            </div>
-                        </div>
-                        <ul className="text-sm space-y-1 text-muted-foreground">
-                            {invoice.services.map(service => (
-                                <li key={service.description} className="flex justify-between">
-                                    <span>{service.description}</span>
-                                    <span>${service.amount.toFixed(2)}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="flex justify-end gap-2 pt-2">
-                            <Button variant="outline" size="sm" onClick={() => onViewInvoice(invoice.id)}>View Invoice</Button>
-                            <Button variant="ghost" size="sm"><Download className="mr-2"/>Download PDF</Button>
-                        </div>
-                    </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-        </Accordion>
+        {invoices.length > 0 ? (
+          <Accordion type="single" collapsible className="w-full">
+              {invoices.map((invoice) => (
+                <AccordionItem value={invoice.id} key={invoice.id}>
+                  <AccordionTrigger>
+                      <div className="flex items-center gap-4 text-left">
+                          <FileText className="h-5 w-5 text-primary" />
+                          <div className="flex-grow">
+                              <p className="font-semibold">{invoice.id}</p>
+                              <p className="text-sm text-muted-foreground">Issued: {new Date(invoice.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</p>
+                          </div>
+                      </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pl-6 pr-2">
+                      <div className="space-y-4">
+                          <div className="flex justify-between items-center">
+                              <div>
+                                  <p className="text-muted-foreground">Status</p>
+                                  {getStatusBadge(invoice.status)}
+                              </div>
+                              <div>
+                                  <p className="text-muted-foreground">Total</p>
+                                  <p className="font-bold text-lg">${invoice.amount.toFixed(2)}</p>
+                              </div>
+                          </div>
+                          <ul className="text-sm space-y-1 text-muted-foreground">
+                              {invoice.services.map(service => (
+                                  <li key={service.description} className="flex justify-between">
+                                      <span>{service.description}</span>
+                                      <span>${service.amount.toFixed(2)}</span>
+                                  </li>
+                              ))}
+                          </ul>
+                          <div className="flex justify-end gap-2 pt-2">
+                              <Button variant="outline" size="sm" onClick={() => onViewInvoice(invoice.id)}>View Invoice</Button>
+                              <Button variant="ghost" size="sm"><Download className="mr-2"/>Download PDF</Button>
+                          </div>
+                      </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+          </Accordion>
+        ) : (
+          <div className="text-center py-12 text-muted-foreground">
+            <p>No invoices have been issued yet.</p>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

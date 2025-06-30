@@ -1,14 +1,16 @@
 'use client';
-
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PlusCircle, Search, Upload } from 'lucide-react';
-import { mockDocuments } from '@/components/admin/operations/mock-data';
+import type { Document } from '@/components/admin/operations/mock-data';
 import { DocumentKpiCards } from '@/components/admin/documents/document-kpi-cards';
 import { DocumentsTable } from '@/components/admin/documents/documents-table';
 
 export default function AdminDocumentsPage() {
+    const [documents] = useState<Document[]>([]);
+    
     return (
         <div className="space-y-6">
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -55,7 +57,7 @@ export default function AdminDocumentsPage() {
                 </div>
             </div>
 
-            <DocumentsTable documents={mockDocuments} />
+            <DocumentsTable documents={documents} />
         </div>
     );
 }

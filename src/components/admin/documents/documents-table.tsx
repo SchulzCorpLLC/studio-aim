@@ -27,7 +27,7 @@ const getStatusBadge = (status: Document['status']) => {
 
 export function DocumentsTable({ documents }: DocumentsTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -41,28 +41,36 @@ export function DocumentsTable({ documents }: DocumentsTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {documents.map(doc => (
-                            <TableRow key={doc.id}>
-                                <TableCell className="font-medium">{doc.name}</TableCell>
-                                <TableCell>{doc.type}</TableCell>
-                                <TableCell>{getStatusBadge(doc.status)}</TableCell>
-                                <TableCell className="font-mono text-xs">{doc.linkedTo}</TableCell>
-                                <TableCell>{doc.date}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><Eye className="mr-2 h-4 w-4" />View Document</DropdownMenuItem>
-                                            <DropdownMenuItem><Send className="mr-2 h-4 w-4" />Send</DropdownMenuItem>
-                                            <DropdownMenuItem><Download className="mr-2 h-4 w-4" />Download</DropdownMenuItem>
-                                            <DropdownMenuItem className="text-destructive"><Archive className="mr-2 h-4 w-4" />Archive</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                        {documents.length > 0 ? (
+                            documents.map(doc => (
+                                <TableRow key={doc.id}>
+                                    <TableCell className="font-medium">{doc.name}</TableCell>
+                                    <TableCell>{doc.type}</TableCell>
+                                    <TableCell>{getStatusBadge(doc.status)}</TableCell>
+                                    <TableCell className="font-mono text-xs">{doc.linkedTo}</TableCell>
+                                    <TableCell>{doc.date}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem><Eye className="mr-2 h-4 w-4" />View Document</DropdownMenuItem>
+                                                <DropdownMenuItem><Send className="mr-2 h-4 w-4" />Send</DropdownMenuItem>
+                                                <DropdownMenuItem><Download className="mr-2 h-4 w-4" />Download</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive"><Archive className="mr-2 h-4 w-4" />Archive</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center">
+                                    No documents found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

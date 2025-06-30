@@ -7,11 +7,10 @@ import { FilePlus, Download, Search } from 'lucide-react';
 
 import { BillingKpiCards } from '@/components/admin/finance/billing-kpi-cards';
 import { PaymentsTable } from '@/components/admin/finance/payments-table';
-import { mockPayments } from '@/components/admin/operations/mock-data';
 import type { Payment } from '@/components/admin/operations/mock-data';
 
 export default function AdminBillingPage() {
-    const [payments] = useState<Payment[]>(mockPayments);
+    const [payments] = useState<Payment[]>([]);
 
     return (
         <div className="space-y-6">

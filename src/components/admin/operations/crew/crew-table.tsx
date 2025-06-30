@@ -39,35 +39,43 @@ export function CrewTable({ crew }: CrewTableProps) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {crew.map((member) => (
-                        <TableRow key={member.id}>
-                            <TableCell className="font-medium">
-                                <div className="flex items-center gap-3">
-                                    <Avatar>
-                                        <AvatarImage src={member.avatarUrl} alt={member.name} data-ai-hint="person portrait" />
-                                        <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                    </Avatar>
-                                    <span>{member.name}</span>
-                                </div>
-                            </TableCell>
-                            <TableCell>{member.role}</TableCell>
-                            <TableCell>{getStatusBadge(member.status)}</TableCell>
-                            <TableCell>{member.contact}</TableCell>
-                            <TableCell>{member.assignedJobId || 'N/A'}</TableCell>
-                            <TableCell className="text-right">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuItem><Briefcase className="mr-2" />Assign Job</DropdownMenuItem>
-                                        <DropdownMenuItem><MessageSquare className="mr-2" />Send Message</DropdownMenuItem>
-                                        <DropdownMenuItem><Phone className="mr-2" />Call</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
+                    {crew.length > 0 ? (
+                        crew.map((member) => (
+                            <TableRow key={member.id}>
+                                <TableCell className="font-medium">
+                                    <div className="flex items-center gap-3">
+                                        <Avatar>
+                                            <AvatarImage src={member.avatarUrl} alt={member.name} data-ai-hint="person portrait" />
+                                            <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                        </Avatar>
+                                        <span>{member.name}</span>
+                                    </div>
+                                </TableCell>
+                                <TableCell>{member.role}</TableCell>
+                                <TableCell>{getStatusBadge(member.status)}</TableCell>
+                                <TableCell>{member.contact}</TableCell>
+                                <TableCell>{member.assignedJobId || 'N/A'}</TableCell>
+                                <TableCell className="text-right">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                            <DropdownMenuItem><Briefcase className="mr-2" />Assign Job</DropdownMenuItem>
+                                            <DropdownMenuItem><MessageSquare className="mr-2" />Send Message</DropdownMenuItem>
+                                            <DropdownMenuItem><Phone className="mr-2" />Call</DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={6} className="h-24 text-center">
+                                No crew members found.
                             </TableCell>
                         </TableRow>
-                    ))}
+                    )}
                 </TableBody>
             </Table>
         </div>

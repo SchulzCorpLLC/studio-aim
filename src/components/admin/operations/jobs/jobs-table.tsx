@@ -42,29 +42,37 @@ export function JobsTable({ jobs }: JobsTableProps) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {jobs.map(job => (
-                        <TableRow key={job.id}>
-                            <TableCell className="font-mono">{job.id}</TableCell>
-                            <TableCell className="font-medium">{job.customer}</TableCell>
-                            <TableCell>{job.date}</TableCell>
-                            <TableCell>{getStatusBadge(job.status)}</TableCell>
-                            <TableCell>{job.crew.join(', ')}</TableCell>
-                            <TableCell>${job.revenue.toFixed(2)}</TableCell>
-                            <TableCell className="text-right">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuItem><Pencil className="mr-2" />Edit Job</DropdownMenuItem>
-                                        <DropdownMenuItem><Users className="mr-2" />Assign Crew</DropdownMenuItem>
-                                        <DropdownMenuItem><Truck className="mr-2" />Assign Vehicle</DropdownMenuItem>
-                                        <DropdownMenuItem className="text-destructive"><XCircle className="mr-2" />Cancel Job</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
+                    {jobs.length > 0 ? (
+                        jobs.map(job => (
+                            <TableRow key={job.id}>
+                                <TableCell className="font-mono">{job.id}</TableCell>
+                                <TableCell className="font-medium">{job.customer}</TableCell>
+                                <TableCell>{job.date}</TableCell>
+                                <TableCell>{getStatusBadge(job.status)}</TableCell>
+                                <TableCell>{job.crew.join(', ')}</TableCell>
+                                <TableCell>${job.revenue.toFixed(2)}</TableCell>
+                                <TableCell className="text-right">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                            <DropdownMenuItem><Pencil className="mr-2" />Edit Job</DropdownMenuItem>
+                                            <DropdownMenuItem><Users className="mr-2" />Assign Crew</DropdownMenuItem>
+                                            <DropdownMenuItem><Truck className="mr-2" />Assign Vehicle</DropdownMenuItem>
+                                            <DropdownMenuItem className="text-destructive"><XCircle className="mr-2" />Cancel Job</DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={7} className="h-24 text-center">
+                                No jobs found.
                             </TableCell>
                         </TableRow>
-                    ))}
+                    )}
                 </TableBody>
             </Table>
         </div>

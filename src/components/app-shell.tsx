@@ -5,6 +5,9 @@ import { Sidebar } from '@/components/sidebar';
 import { AdminSidebar } from '@/components/admin/admin-sidebar';
 import { CrewLayout } from '@/components/crew/crew-layout';
 import { Logo } from '@/components/logo';
+import { Header } from '@/components/header';
+import { navItems } from '@/config/nav';
+import { adminNavItems } from '@/config/admin-nav';
 
 export function AppShell({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -31,6 +34,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
          <div className="grid min-h-screen w-full md:grid-cols-[280px_1fr]">
             <AdminSidebar />
             <div className="flex flex-col">
+                <Header navItems={adminNavItems} />
                 <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
                 {children}
                 </main>
@@ -43,6 +47,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
          <div className="grid min-h-screen w-full md:grid-cols-[280px_1fr]">
             <Sidebar />
             <div className="flex flex-col">
+                <Header navItems={navItems} />
                 <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
                 {children}
                 </main>

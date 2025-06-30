@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Bar, BarChart, XAxis, YAxis, Tooltip } from 'recharts';
-import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
+import { Bar, BarChart, XAxis, YAxis } from 'recharts';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const chartConfig = {
@@ -16,18 +16,19 @@ export function RevenueChart() {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    // Simulate fetching data
-    setTimeout(() => {
-        setData([
-            { date: 'Mon', revenue: Math.floor(Math.random() * 2500) + 500 },
-            { date: 'Tue', revenue: Math.floor(Math.random() * 2500) + 500 },
-            { date: 'Wed', revenue: Math.floor(Math.random() * 2500) + 500 },
-            { date: 'Thu', revenue: Math.floor(Math.random() * 2500) + 500 },
-            { date: 'Fri', revenue: Math.floor(Math.random() * 2500) + 500 },
-            { date: 'Sat', revenue: Math.floor(Math.random() * 2500) + 500 },
-            { date: 'Sun', revenue: Math.floor(Math.random() * 2500) + 500 },
-        ]);
-    }, 500);
+    // In a real app, you would fetch this data from your backend.
+    // We are leaving this empty to represent a clean, production-ready state.
+    // setTimeout(() => {
+    //     setData([
+    //         { date: 'Mon', revenue: Math.floor(Math.random() * 2500) + 500 },
+    //         { date: 'Tue', revenue: Math.floor(Math.random() * 2500) + 500 },
+    //         { date: 'Wed', revenue: Math.floor(Math.random() * 2500) + 500 },
+    //         { date: 'Thu', revenue: Math.floor(Math.random() * 2500) + 500 },
+    //         { date: 'Fri', revenue: Math.floor(Math.random() * 2500) + 500 },
+    //         { date: 'Sat', revenue: Math.floor(Math.random() * 2500) + 500 },
+    //         { date: 'Sun', revenue: Math.floor(Math.random() * 2500) + 500 },
+    //     ]);
+    // }, 500);
   }, []);
 
   if (data.length === 0) {
@@ -40,7 +41,7 @@ export function RevenueChart() {
         <BarChart accessibilityLayer data={data} margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
             <XAxis dataKey="date" tickLine={false} axisLine={false} />
             <YAxis tickLine={false} axisLine={false} tickFormatter={(value) => `$${value/1000}k`} />
-            <Tooltip
+            <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent indicator="dot" />}
             />

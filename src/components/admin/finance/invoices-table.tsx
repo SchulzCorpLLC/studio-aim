@@ -27,7 +27,7 @@ const getStatusBadge = (status: Invoice['status']) => {
 
 export function InvoicesTable({ invoices }: InvoicesTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -41,28 +41,36 @@ export function InvoicesTable({ invoices }: InvoicesTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {invoices.map(invoice => (
-                            <TableRow key={invoice.id}>
-                                <TableCell className="font-mono">{invoice.id}</TableCell>
-                                <TableCell className="font-medium">{invoice.customerName}</TableCell>
-                                <TableCell>{invoice.dateIssued}</TableCell>
-                                <TableCell>${invoice.total.toLocaleString()}</TableCell>
-                                <TableCell>{getStatusBadge(invoice.status)}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><FileText className="mr-2" />View Details</DropdownMenuItem>
-                                            <DropdownMenuItem><Download className="mr-2" />Download PDF</DropdownMenuItem>
-                                            <DropdownMenuItem><Send className="mr-2" />Resend Invoice</DropdownMenuItem>
-                                            <DropdownMenuItem className="text-destructive"><XCircle className="mr-2" />Void Invoice</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                        {invoices.length > 0 ? (
+                            invoices.map(invoice => (
+                                <TableRow key={invoice.id}>
+                                    <TableCell className="font-mono">{invoice.id}</TableCell>
+                                    <TableCell className="font-medium">{invoice.customerName}</TableCell>
+                                    <TableCell>{invoice.dateIssued}</TableCell>
+                                    <TableCell>${invoice.total.toLocaleString()}</TableCell>
+                                    <TableCell>{getStatusBadge(invoice.status)}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem><FileText className="mr-2" />View Details</DropdownMenuItem>
+                                                <DropdownMenuItem><Download className="mr-2" />Download PDF</DropdownMenuItem>
+                                                <DropdownMenuItem><Send className="mr-2" />Resend Invoice</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive"><XCircle className="mr-2" />Void Invoice</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center">
+                                    No invoices found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

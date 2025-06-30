@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
-import { SendHorizontal, User, ArrowLeft, Mail, Phone, MessageSquare, Bot, Paperclip } from 'lucide-react';
+import { SendHorizontal, User, ArrowLeft, Mail, Phone, MessageSquare, Bot, Paperclip, Inbox } from 'lucide-react';
 import type { Communication } from '../operations/mock-data';
 
 interface CommunicationViewProps {
@@ -25,7 +25,7 @@ const getIcon = (type: Communication['type']) => {
 }
 
 export function CommunicationView({ communications }: CommunicationViewProps) {
-  const [selectedConvo, setSelectedConvo] = useState(communications[0]);
+  const [selectedConvo, setSelectedConvo] = useState<Communication | null>(communications.length > 0 ? communications[0] : null);
   const [newMessage, setNewMessage] = useState('');
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   
@@ -61,7 +61,9 @@ export function CommunicationView({ communications }: CommunicationViewProps) {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (selectedConvo) {
+      scrollToBottom();
+    }
   }, [selectedConvo]);
 
   return (
@@ -73,13 +75,13 @@ export function CommunicationView({ communications }: CommunicationViewProps) {
                 <h2 className="text-xl font-bold">All Communications</h2>
             </div>
             <ScrollArea className="flex-1">
-                {communications.map((convo) => (
+                {communications.length > 0 ? communications.map((convo) => (
                     <button
                         key={convo.id}
                         onClick={() => handleSelectConvo(convo)}
                         className={cn(
                             'flex w-full items-start gap-3 p-4 text-left transition-colors hover:bg-accent',
-                            selectedConvo.id === convo.id && 'bg-accent',
+                            selectedConvo?.id === convo.id && 'bg-accent',
                             !convo.isRead && 'bg-primary/10'
                         )}
                     >
@@ -94,13 +96,19 @@ export function CommunicationView({ communications }: CommunicationViewProps) {
                         </div>
                         <span className="text-xs text-muted-foreground flex-shrink-0">{convo.timestamp}</span>
                     </button>
-                ))}
+                )) : (
+                    <div className="text-center py-16 text-muted-foreground">
+                        <Inbox className="mx-auto h-12 w-12" />
+                        <h3 className="text-xl font-semibold mt-4">No Messages</h3>
+                        <p>Communications with customers and crew will appear here.</p>
+                    </div>
+                )}
             </ScrollArea>
         </div>
       )}
 
       {/* Right Pane: Active Chat/Thread */}
-      {(!isMobile || view === 'chat') && (
+      {(!isMobile || view === 'chat') && selectedConvo && (
         <div className="w-full md:w-2/3 flex flex-col bg-background">
             {/* Header */}
             <div className="flex items-center gap-3 p-4 border-b">
@@ -172,6 +180,13 @@ export function CommunicationView({ communications }: CommunicationViewProps) {
             </div>
         </div>
       )}
+       {(!isMobile || view === 'chat') && !selectedConvo && (
+         <div className="w-full md:w-2/3 flex flex-col bg-background items-center justify-center text-muted-foreground">
+            <Inbox className="h-24 w-24" />
+            <h3 className="text-2xl font-semibold mt-4">Select a Conversation</h3>
+            <p>Choose a conversation from the left to view messages.</p>
+         </div>
+       )}
     </Card>
   );
 }

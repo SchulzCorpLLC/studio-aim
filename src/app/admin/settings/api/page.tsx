@@ -1,12 +1,16 @@
 'use client';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
-import { mockApiKeys, mockWebhooks } from '@/components/admin/operations/mock-data';
+import type { ApiKey, Webhook } from '@/components/admin/operations/mock-data';
 import { ApiKeysTable } from '@/components/admin/settings/api-keys-table';
 import { WebhooksTable } from '@/components/admin/settings/webhooks-table';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 export default function ApiSettingsPage() {
+    const [apiKeys] = useState<ApiKey[]>([]);
+    const [webhooks] = useState<Webhook[]>([]);
+
     return (
         <div className="space-y-8">
             <header>
@@ -26,7 +30,7 @@ export default function ApiSettingsPage() {
                     </Button>
                 </CardHeader>
                 <CardContent>
-                    <ApiKeysTable apiKeys={mockApiKeys} />
+                    <ApiKeysTable apiKeys={apiKeys} />
                 </CardContent>
             </Card>
 
@@ -42,7 +46,7 @@ export default function ApiSettingsPage() {
                     </Button>
                 </CardHeader>
                 <CardContent>
-                    <WebhooksTable webhooks={mockWebhooks} />
+                    <WebhooksTable webhooks={webhooks} />
                 </CardContent>
             </Card>
         </div>

@@ -13,7 +13,7 @@ export default function CrewProfilePage() {
               <AvatarImage src="https://placehold.co/100x100.png" alt="Crew Member" data-ai-hint="person portrait" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-          <CardTitle className="text-3xl font-bold">John Smith</CardTitle>
+          <CardTitle className="text-3xl font-bold">Crew Member</CardTitle>
           <CardDescription>Lead Mover / Driver</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

@@ -24,18 +24,9 @@ const getStatusBadge = (status: Lead['status']) => {
     }
 };
 
-const getPriorityBadge = (priority: Lead['priority']) => {
-    switch(priority) {
-        case 'High': return <Badge variant="destructive">{priority}</Badge>;
-        case 'Medium': return <Badge variant="secondary">{priority}</Badge>;
-        case 'Low': return <Badge variant="outline">{priority}</Badge>;
-    }
-}
-
-
 export function LeadsTable({ leads }: LeadsTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -49,45 +40,53 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {leads.map(lead => (
-                            <TableRow key={lead.id}>
-                                <TableCell>
-                                    <p className="font-medium">{lead.name}</p>
-                                    <p className="text-xs text-muted-foreground">{lead.contact}</p>
-                                </TableCell>
-                                <TableCell>${lead.quoteAmount.toLocaleString()}</TableCell>
-                                <TableCell>{lead.source}</TableCell>
-                                <TableCell>{getStatusBadge(lead.status)}</TableCell>
-                                <TableCell>{lead.lastContacted}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem>
-                                                <CheckCircle2 className="mr-2" />Convert to Job
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <MessageSquare className="mr-2" />Send Follow-up
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Clock className="mr-2" />Snooze Lead
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Plus className="mr-2" />Add Note
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Pencil className="mr-2" />Edit Quote
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem className="text-destructive">
-                                                <XCircle className="mr-2" />Close Lead
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                        {leads.length > 0 ? (
+                            leads.map(lead => (
+                                <TableRow key={lead.id}>
+                                    <TableCell>
+                                        <p className="font-medium">{lead.name}</p>
+                                        <p className="text-xs text-muted-foreground">{lead.contact}</p>
+                                    </TableCell>
+                                    <TableCell>${lead.quoteAmount.toLocaleString()}</TableCell>
+                                    <TableCell>{lead.source}</TableCell>
+                                    <TableCell>{getStatusBadge(lead.status)}</TableCell>
+                                    <TableCell>{lead.lastContacted}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem>
+                                                    <CheckCircle2 className="mr-2" />Convert to Job
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem>
+                                                    <MessageSquare className="mr-2" />Send Follow-up
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem>
+                                                    <Clock className="mr-2" />Snooze Lead
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem>
+                                                    <Plus className="mr-2" />Add Note
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem>
+                                                    <Pencil className="mr-2" />Edit Quote
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive">
+                                                    <XCircle className="mr-2" />Close Lead
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center">
+                                    No leads found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

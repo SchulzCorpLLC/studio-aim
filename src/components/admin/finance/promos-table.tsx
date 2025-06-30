@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal, Pencil, Trash2, Copy } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface PromosTableProps {
     promos: Promo[];
@@ -14,7 +13,7 @@ interface PromosTableProps {
 
 export function PromosTable({ promos }: PromosTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -29,32 +28,40 @@ export function PromosTable({ promos }: PromosTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {promos.map(promo => (
-                            <TableRow key={promo.id}>
-                                <TableCell className="font-mono font-medium">{promo.code}</TableCell>
-                                <TableCell>{promo.type}</TableCell>
-                                <TableCell>{promo.type === 'Percentage' ? `${promo.value}%` : `$${promo.value}`}</TableCell>
-                                <TableCell>{promo.useCount}</TableCell>
-                                <TableCell>
-                                    <Badge variant={promo.status === 'Active' ? 'default' : 'outline'}>
-                                        {promo.status}
-                                    </Badge>
-                                </TableCell>
-                                <TableCell>{promo.expiryDate}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><Pencil className="mr-2" />Edit</DropdownMenuItem>
-                                            <DropdownMenuItem><Copy className="mr-2" />Clone</DropdownMenuItem>
-                                            <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2" />Delete</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                        {promos.length > 0 ? (
+                            promos.map(promo => (
+                                <TableRow key={promo.id}>
+                                    <TableCell className="font-mono font-medium">{promo.code}</TableCell>
+                                    <TableCell>{promo.type}</TableCell>
+                                    <TableCell>{promo.type === 'Percentage' ? `${promo.value}%` : `$${promo.value}`}</TableCell>
+                                    <TableCell>{promo.useCount}</TableCell>
+                                    <TableCell>
+                                        <Badge variant={promo.status === 'Active' ? 'default' : 'outline'}>
+                                            {promo.status}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>{promo.expiryDate}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem><Pencil className="mr-2" />Edit</DropdownMenuItem>
+                                                <DropdownMenuItem><Copy className="mr-2" />Clone</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2" />Delete</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={7} className="h-24 text-center">
+                                    No promos found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

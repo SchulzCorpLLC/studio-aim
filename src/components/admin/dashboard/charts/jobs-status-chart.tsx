@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Bar, BarChart, XAxis, YAxis, Tooltip } from 'recharts';
-import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
+import { Bar, BarChart, XAxis, YAxis } from 'recharts';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const chartConfig = {
@@ -15,14 +15,16 @@ export function JobsStatusChart() {
     const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
-      setTimeout(() => {
-        setData([
-            { status: 'Scheduled', jobs: Math.floor(Math.random() * 20) },
-            { status: 'In Progress', jobs: Math.floor(Math.random() * 10) },
-            { status: 'Completed', jobs: Math.floor(Math.random() * 30) },
-            { status: 'Cancelled', jobs: Math.floor(Math.random() * 5) },
-        ]);
-      }, 500)
+      // In a real app, you would fetch this data from your backend.
+      // We are leaving this empty to represent a clean, production-ready state.
+      // setTimeout(() => {
+      //   setData([
+      //       { status: 'Scheduled', jobs: Math.floor(Math.random() * 20) },
+      //       { status: 'In Progress', jobs: Math.floor(Math.random() * 10) },
+      //       { status: 'Completed', jobs: Math.floor(Math.random() * 30) },
+      //       { status: 'Cancelled', jobs: Math.floor(Math.random() * 5) },
+      //   ]);
+      // }, 500)
     }, []);
 
     if (data.length === 0) {

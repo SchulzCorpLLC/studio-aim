@@ -8,10 +8,10 @@ export function JobPerformanceSection() {
     return (
         <div className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <AnalyticsStatCard title="Total Jobs (30d)" value="128" icon={Briefcase} description="+20% from last month" />
-                <AnalyticsStatCard title="On-Time Completion" value="96%" icon={TrendingUp} />
-                <AnalyticsStatCard title="Avg. Job Duration" value="3.5 hrs" icon={Clock} />
-                <AnalyticsStatCard title="Avg. Rating" value="4.8" icon={Star} />
+                <AnalyticsStatCard title="Total Jobs (30d)" value="0" icon={Briefcase} />
+                <AnalyticsStatCard title="On-Time Completion" value="0%" icon={TrendingUp} />
+                <AnalyticsStatCard title="Avg. Job Duration" value="0 hrs" icon={Clock} />
+                <AnalyticsStatCard title="Avg. Rating" value="0.0" icon={Star} />
             </div>
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
                 <Card>

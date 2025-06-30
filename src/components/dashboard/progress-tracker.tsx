@@ -1,17 +1,16 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { CheckCircle, Package, Truck, Home, Sparkles } from "lucide-react";
+import { CheckCircle, Package, Truck, Home } from "lucide-react";
 
 const steps = [
   { name: "Confirmed", icon: CheckCircle },
   { name: "Packed", icon: Package },
   { name: "In Transit", icon: Truck },
   { name: "Delivered", icon: Home },
-  { name: "Done", icon: Sparkles },
 ];
 
-export function ProgressTracker({ currentStep }: { currentStep: "Confirmed" | "Packed" | "In Transit" | "Delivered" | "Done" }) {
+export function ProgressTracker({ currentStep }: { currentStep: "Confirmed" | "Packed" | "In Transit" | "Delivered" }) {
   const currentStepIndex = steps.findIndex(step => step.name === currentStep);
 
   return (

@@ -56,15 +56,15 @@ export default function AccountSettingsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="name">Full Name</Label>
-              <Input id="name" defaultValue="Alex Doe" disabled={!isProfileEditing} />
+              <Input id="name" placeholder="Your Name" disabled={!isProfileEditing} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
-              <Input id="email" type="email" defaultValue="alex.doe@example.com" disabled={!isProfileEditing} />
+              <Input id="email" type="email" placeholder="your.email@example.com" disabled={!isProfileEditing} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" type="tel" defaultValue="+1 (555) 123-4567" disabled={!isProfileEditing} />
+              <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" disabled={!isProfileEditing} />
             </div>
           </div>
         </CardContent>
@@ -106,23 +106,10 @@ export default function AccountSettingsPage() {
            <Separator />
            <div>
               <Label className="font-medium">Session History</Label>
-              <p className="text-sm text-muted-foreground pb-4">Last login: Chrome on Windows</p>
+              <p className="text-sm text-muted-foreground pb-4">Manage your active sessions.</p>
               <div className="space-y-3">
-                <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
-                    <Laptop className="h-5 w-5" />
-                    <div className="flex-grow">
-                        <p className="font-medium">Chrome on Windows</p>
-                        <p className="text-sm text-muted-foreground">San Francisco, CA · Current session</p>
-                    </div>
-                    <Button variant="outline" size="sm">Log out</Button>
-                </div>
-                 <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
-                    <Smartphone className="h-5 w-5" />
-                    <div className="flex-grow">
-                        <p className="font-medium">Safari on iOS</p>
-                        <p className="text-sm text-muted-foreground">San Francisco, CA · 2 days ago</p>
-                    </div>
-                     <Button variant="outline" size="sm">Log out</Button>
+                 <div className="text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg">
+                    <p>No other active sessions.</p>
                 </div>
               </div>
            </div>

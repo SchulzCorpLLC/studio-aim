@@ -3,13 +3,12 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { mockNotifications } from '@/components/admin/operations/mock-data';
 import type { Notification } from '@/components/admin/operations/mock-data';
 import { NotificationsFeed } from '@/components/admin/support/notifications-feed';
 import { Card } from '@/components/ui/card';
 
 export default function AdminNotificationsPage() {
-  const [notifications] = useState<Notification[]>(mockNotifications);
+  const [notifications] = useState<Notification[]>([]);
   const [filter, setFilter] = useState('all');
 
   const filteredNotifications = notifications.filter(n => {

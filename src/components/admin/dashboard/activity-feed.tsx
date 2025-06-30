@@ -2,15 +2,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { AlertTriangle, CheckCircle, Info, FileText, Truck, User } from "lucide-react";
+import { AlertTriangle, CheckCircle, Info, FileText, Truck, User, List } from "lucide-react";
 
-const mockActivities = [
-  { text: "New quote submitted by John Doe (Los Angeles)", time: "2m ago", status: "New", icon: FileText },
-  { text: "Job #2043 marked complete by Crew B", time: "15m ago", status: "Info", icon: CheckCircle },
-  { text: "Claim opened on Job #1998", time: "45m ago", status: "Warning", icon: AlertTriangle },
-  { text: "Invoice #A132 sent to Sarah Lin", time: "1h ago", status: "Info", icon: FileText },
-  { text: "Truck 5 returned from Job #2031", time: "2h ago", status: "Info", icon: Truck },
-  { text: "Crew A assigned to Job #2045", time: "3h ago", status: "Info", icon: User },
+const mockActivities: any[] = [
+  // Example data has been removed for cleanup.
+  // This should be populated from a real-time data source.
 ];
 
 const statusConfig = {
@@ -29,7 +25,7 @@ export function ActivityFeed() {
       <CardContent>
         <ScrollArea className="h-96">
           <div className="space-y-6">
-            {mockActivities.map((activity, index) => {
+            {mockActivities.length > 0 ? mockActivities.map((activity, index) => {
               const config = statusConfig[activity.status as keyof typeof statusConfig] || statusConfig.Info;
               const Icon = activity.icon;
               return (
@@ -46,7 +42,13 @@ export function ActivityFeed() {
                   </div>
                 </div>
               );
-            })}
+            }) : (
+              <div className="text-center py-16 text-muted-foreground">
+                  <List className="mx-auto h-12 w-12" />
+                  <h3 className="text-xl font-semibold mt-4">No Recent Activity</h3>
+                  <p>Live updates will appear here as they happen.</p>
+              </div>
+            )}
           </div>
         </ScrollArea>
       </CardContent>

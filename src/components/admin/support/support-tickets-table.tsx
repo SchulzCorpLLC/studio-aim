@@ -24,7 +24,6 @@ import {
   User,
   FileText,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface SupportTicketsTableProps {
   tickets: SupportTicket[];
@@ -85,7 +84,7 @@ const getPriorityBadge = (priority: SupportTicket['priority']) => {
 
 export function SupportTicketsTable({ tickets }: SupportTicketsTableProps) {
   return (
-    <Card className="hover-none">
+    <Card>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -100,41 +99,49 @@ export function SupportTicketsTable({ tickets }: SupportTicketsTableProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {tickets.map((ticket) => (
-              <TableRow key={ticket.id}>
-                <TableCell className="font-mono text-xs">{ticket.id}</TableCell>
-                <TableCell className="font-medium max-w-xs truncate">
-                  {ticket.subject}
-                </TableCell>
-                <TableCell>{ticket.customerName}</TableCell>
-                <TableCell>{getPriorityBadge(ticket.priority)}</TableCell>
-                <TableCell>{getStatusBadge(ticket.status)}</TableCell>
-                <TableCell>{ticket.assignedTo}</TableCell>
-                <TableCell className="text-right">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <MoreHorizontal />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>
-                        <FileText className="mr-2" />
-                        View Ticket
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <User className="mr-2" />
-                        Assign
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <CheckCircle className="mr-2" />
-                        Mark as Resolved
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
-              </TableRow>
-            ))}
+            {tickets.length > 0 ? (
+                tickets.map((ticket) => (
+                  <TableRow key={ticket.id}>
+                    <TableCell className="font-mono text-xs">{ticket.id}</TableCell>
+                    <TableCell className="font-medium max-w-xs truncate">
+                      {ticket.subject}
+                    </TableCell>
+                    <TableCell>{ticket.customerName}</TableCell>
+                    <TableCell>{getPriorityBadge(ticket.priority)}</TableCell>
+                    <TableCell>{getStatusBadge(ticket.status)}</TableCell>
+                    <TableCell>{ticket.assignedTo}</TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon">
+                            <MoreHorizontal />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem>
+                            <FileText className="mr-2" />
+                            View Ticket
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <User className="mr-2" />
+                            Assign
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <CheckCircle className="mr-2" />
+                            Mark as Resolved
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))
+            ) : (
+                <TableRow>
+                    <TableCell colSpan={7} className="h-24 text-center">
+                        No support tickets found.
+                    </TableCell>
+                </TableRow>
+            )}
           </TableBody>
         </Table>
       </div>

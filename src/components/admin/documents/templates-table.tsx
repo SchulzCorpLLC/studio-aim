@@ -13,7 +13,7 @@ interface TemplatesTableProps {
 
 export function TemplatesTable({ templates }: TemplatesTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -25,26 +25,34 @@ export function TemplatesTable({ templates }: TemplatesTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {templates.map(template => (
-                            <TableRow key={template.id}>
-                                <TableCell className="font-medium">{template.name}</TableCell>
-                                <TableCell><Badge variant="outline">{template.category}</Badge></TableCell>
-                                <TableCell>{template.lastUpdated}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><Pencil className="mr-2 h-4 w-4" />Edit</DropdownMenuItem>
-                                            <DropdownMenuItem><Eye className="mr-2 h-4 w-4" />Preview</DropdownMenuItem>
-                                            <DropdownMenuItem><Send className="mr-2 h-4 w-4" />Use Template</DropdownMenuItem>
-                                            <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2 h-4 w-4" />Delete</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                        {templates.length > 0 ? (
+                            templates.map(template => (
+                                <TableRow key={template.id}>
+                                    <TableCell className="font-medium">{template.name}</TableCell>
+                                    <TableCell><Badge variant="outline">{template.category}</Badge></TableCell>
+                                    <TableCell>{template.lastUpdated}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem><Pencil className="mr-2 h-4 w-4" />Edit</DropdownMenuItem>
+                                                <DropdownMenuItem><Eye className="mr-2 h-4 w-4" />Preview</DropdownMenuItem>
+                                                <DropdownMenuItem><Send className="mr-2 h-4 w-4" />Use Template</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2 h-4 w-4" />Delete</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={4} className="h-24 text-center">
+                                    No templates found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

@@ -7,33 +7,11 @@ import { NewClaimModal } from '@/components/claims/new-claim-modal';
 import { ClaimHistory } from '@/components/claims/claim-history';
 import { ClaimsFaq } from '@/components/claims/claims-faq';
 import type { Claim } from '@/components/claims/claim-history';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-
-const initialClaims: Claim[] = [
-  {
-    id: 'CLM-001',
-    title: 'Scratched Dining Table',
-    dateSubmitted: '2024-10-28',
-    status: 'Under Review',
-  },
-  {
-    id: 'CLM-002',
-    title: 'Missing Box of Books',
-    dateSubmitted: '2024-10-27',
-    status: 'Approved',
-  },
-  {
-    id: 'CLM-003',
-    title: 'Broken TV Screen',
-    dateSubmitted: '2024-09-15',
-    status: 'Closed',
-  },
-];
-
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 export default function ClaimsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [claims, setClaims] = useState(initialClaims);
+  const [claims, setClaims] = useState<Claim[]>([]);
 
   const handleClaimSubmit = (newClaim: { title: string }) => {
     const newClaimWithId = {

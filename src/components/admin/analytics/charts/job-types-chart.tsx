@@ -1,13 +1,8 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { Pie, PieChart } from 'recharts';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
-
-const chartData = [
-  { type: 'Local', jobs: 275, fill: 'var(--color-local)' },
-  { type: 'Long-distance', jobs: 120, fill: 'var(--color-long-distance)' },
-  { type: 'Commercial', jobs: 80, fill: 'var(--color-commercial)' },
-  { type: 'Storage', jobs: 50, fill: 'var(--color-storage)' },
-];
+import { Skeleton } from '@/components/ui/skeleton';
 
 const chartConfig = {
   jobs: {
@@ -32,6 +27,17 @@ const chartConfig = {
 };
 
 export function JobTypesChart() {
+  const [chartData, setChartData] = useState<any[]>([]);
+
+  useEffect(() => {
+    // In a real app, you would fetch this data.
+    // Leaving it empty for now to prep for real data.
+  }, []);
+  
+  if (chartData.length === 0) {
+    return <Skeleton className="h-80 w-full" />;
+  }
+
   return (
     <ChartContainer config={chartConfig} className="h-80 w-full">
       <PieChart>

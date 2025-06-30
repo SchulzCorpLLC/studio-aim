@@ -24,7 +24,6 @@ import {
   Clock,
   FileText,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface AdminClaimsTableProps {
   claims: AdminClaim[];
@@ -67,7 +66,7 @@ const getStatusBadge = (status: AdminClaim['status']) => {
 
 export function AdminClaimsTable({ claims }: AdminClaimsTableProps) {
   return (
-    <Card className="hover-none">
+    <Card>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -83,42 +82,50 @@ export function AdminClaimsTable({ claims }: AdminClaimsTableProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {claims.map((claim) => (
-              <TableRow key={claim.id}>
-                <TableCell className="font-mono text-xs">{claim.id}</TableCell>
-                <TableCell className="font-medium">
-                  {claim.customerName}
-                </TableCell>
-                <TableCell className="font-mono text-xs">{claim.jobId}</TableCell>
-                <TableCell>{claim.type}</TableCell>
-                <TableCell>${claim.amount.toLocaleString()}</TableCell>
-                <TableCell>{claim.date}</TableCell>
-                <TableCell>{getStatusBadge(claim.status)}</TableCell>
-                <TableCell className="text-right">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <MoreHorizontal />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>
-                        <FileText className="mr-2" />
-                        View Details
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <CheckCircle className="mr-2" />
-                        Approve Claim
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="text-destructive">
-                        <XCircle className="mr-2" />
-                        Reject Claim
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
-              </TableRow>
-            ))}
+            {claims.length > 0 ? (
+                claims.map((claim) => (
+                  <TableRow key={claim.id}>
+                    <TableCell className="font-mono text-xs">{claim.id}</TableCell>
+                    <TableCell className="font-medium">
+                      {claim.customerName}
+                    </TableCell>
+                    <TableCell className="font-mono text-xs">{claim.jobId}</TableCell>
+                    <TableCell>{claim.type}</TableCell>
+                    <TableCell>${claim.amount.toLocaleString()}</TableCell>
+                    <TableCell>{claim.date}</TableCell>
+                    <TableCell>{getStatusBadge(claim.status)}</TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon">
+                            <MoreHorizontal />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem>
+                            <FileText className="mr-2" />
+                            View Details
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <CheckCircle className="mr-2" />
+                            Approve Claim
+                          </DropdownMenuItem>
+                          <DropdownMenuItem className="text-destructive">
+                            <XCircle className="mr-2" />
+                            Reject Claim
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))
+            ) : (
+                <TableRow>
+                    <TableCell colSpan={8} className="h-24 text-center">
+                        No claims found.
+                    </TableCell>
+                </TableRow>
+            )}
           </TableBody>
         </Table>
       </div>

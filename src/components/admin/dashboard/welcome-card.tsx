@@ -6,8 +6,8 @@ export function WelcomeCard() {
   return (
     <Card variant="hover">
       <CardHeader>
-        <CardTitle className="text-2xl tracking-tight md:text-3xl">Welcome!</CardTitle>
-        <CardDescription className="pt-1 text-sm md:text-base">
+        <CardTitle className="text-3xl tracking-tight">Welcome!</CardTitle>
+        <CardDescription className="text-base pt-1">
           Here's an overview of your upcoming move.
         </CardDescription>
       </CardHeader>

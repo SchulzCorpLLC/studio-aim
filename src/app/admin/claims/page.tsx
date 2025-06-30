@@ -10,12 +10,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockAdminClaims } from '@/components/admin/operations/mock-data';
 import type { AdminClaim } from '@/components/admin/operations/mock-data';
 import { AdminClaimsTable } from '@/components/admin/support/admin-claims-table';
 
 export default function AdminClaimsPage() {
-  const [claims] = useState<AdminClaim[]>(mockAdminClaims);
+  const [claims] = useState<AdminClaim[]>([]);
 
   return (
     <div className="space-y-6">

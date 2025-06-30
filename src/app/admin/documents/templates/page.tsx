@@ -1,12 +1,14 @@
 'use client';
-
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockDocumentTemplates } from '@/components/admin/operations/mock-data';
+import type { DocumentTemplate } from '@/components/admin/operations/mock-data';
 import { TemplatesTable } from '@/components/admin/documents/templates-table';
 
 export default function DocumentTemplatesPage() {
+    const [templates] = useState<DocumentTemplate[]>([]);
+
     return (
         <div className="space-y-6">
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -25,7 +27,7 @@ export default function DocumentTemplatesPage() {
                 <Input placeholder="Search templates..." className="pl-10 h-12 text-base" />
             </div>
 
-            <TemplatesTable templates={mockDocumentTemplates} />
+            <TemplatesTable templates={templates} />
         </div>
     );
 }

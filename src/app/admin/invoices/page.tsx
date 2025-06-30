@@ -4,12 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockInvoices } from '@/components/admin/operations/mock-data';
 import type { Invoice } from '@/components/admin/operations/mock-data';
 import { InvoicesTable } from '@/components/admin/finance/invoices-table';
 
 export default function AdminInvoicesPage() {
-    const [invoices] = useState<Invoice[]>(mockInvoices);
+    const [invoices] = useState<Invoice[]>([]);
 
     return (
         <div className="space-y-6">

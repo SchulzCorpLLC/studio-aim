@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { List } from "lucide-react";
+import { FileText, Calendar, CheckCircle, List } from "lucide-react";
 
 export function RecentActivity() {
   return (

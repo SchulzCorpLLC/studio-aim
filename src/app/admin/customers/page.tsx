@@ -4,12 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockCustomers } from '@/components/admin/operations/mock-data';
 import type { Customer } from '@/components/admin/operations/mock-data';
 import { CustomersTable } from '@/components/admin/crm/customers-table';
 
 export default function AdminCustomersPage() {
-    const [customers] = useState<Customer[]>(mockCustomers);
+    const [customers] = useState<Customer[]>([]);
 
     return (
         <div className="space-y-6">

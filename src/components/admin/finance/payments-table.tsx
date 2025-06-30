@@ -3,7 +3,6 @@ import type { Payment } from '../operations/mock-data';
 import { Card } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { CheckCircle2, Clock, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -24,7 +23,7 @@ const getStatusBadge = (status: Payment['status']) => {
 
 export function PaymentsTable({ payments }: PaymentsTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -38,16 +37,24 @@ export function PaymentsTable({ payments }: PaymentsTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {payments.map(payment => (
-                            <TableRow key={payment.id}>
-                                <TableCell className="font-medium">{payment.customerName}</TableCell>
-                                <TableCell className="font-mono text-xs">{payment.jobId}</TableCell>
-                                <TableCell>${payment.amount.toLocaleString()}</TableCell>
-                                <TableCell>{payment.method}</TableCell>
-                                <TableCell>{payment.date}</TableCell>
-                                <TableCell>{getStatusBadge(payment.status)}</TableCell>
+                        {payments.length > 0 ? (
+                            payments.map(payment => (
+                                <TableRow key={payment.id}>
+                                    <TableCell className="font-medium">{payment.customerName}</TableCell>
+                                    <TableCell className="font-mono text-xs">{payment.jobId}</TableCell>
+                                    <TableCell>${payment.amount.toLocaleString()}</TableCell>
+                                    <TableCell>{payment.method}</TableCell>
+                                    <TableCell>{payment.date}</TableCell>
+                                    <TableCell>{getStatusBadge(payment.status)}</TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center">
+                                    No payments found.
+                                </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

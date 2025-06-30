@@ -33,40 +33,48 @@ export function ApiKeysTable({ apiKeys }: ApiKeysTableProps) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {apiKeys.map((key) => (
-                        <TableRow key={key.id}>
-                            <TableCell className="font-medium">
-                                <div className="flex items-center gap-3">
-                                    <KeyRound className="h-5 w-5 text-muted-foreground" />
-                                    <span>{key.name}</span>
-                                </div>
-                            </TableCell>
-                            <TableCell>
-                                <div className="flex items-center gap-2">
-                                    <span className="font-mono text-xs">{key.token}</span>
-                                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => handleCopy(key.token)}>
-                                        <Copy className="h-3 w-3" />
-                                    </Button>
-                                </div>
-                            </TableCell>
-                            <TableCell>
-                                <Badge variant={key.status === 'Active' ? 'default' : 'destructive'}>{key.status}</Badge>
-                            </TableCell>
-                            <TableCell>{key.createdDate}</TableCell>
-                            <TableCell>{key.lastUsed}</TableCell>
-                            <TableCell className="text-right">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuItem><RotateCcw className="mr-2 h-4 w-4" />Rotate Key</DropdownMenuItem>
-                                        <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2 h-4 w-4" />Revoke Key</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
+                    {apiKeys.length > 0 ? (
+                        apiKeys.map((key) => (
+                            <TableRow key={key.id}>
+                                <TableCell className="font-medium">
+                                    <div className="flex items-center gap-3">
+                                        <KeyRound className="h-5 w-5 text-muted-foreground" />
+                                        <span>{key.name}</span>
+                                    </div>
+                                </TableCell>
+                                <TableCell>
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-mono text-xs">{key.token}</span>
+                                        <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => handleCopy(key.token)}>
+                                            <Copy className="h-3 w-3" />
+                                        </Button>
+                                    </div>
+                                </TableCell>
+                                <TableCell>
+                                    <Badge variant={key.status === 'Active' ? 'default' : 'destructive'}>{key.status}</Badge>
+                                </TableCell>
+                                <TableCell>{key.createdDate}</TableCell>
+                                <TableCell>{key.lastUsed}</TableCell>
+                                <TableCell className="text-right">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                            <DropdownMenuItem><RotateCcw className="mr-2 h-4 w-4" />Rotate Key</DropdownMenuItem>
+                                            <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2 h-4 w-4" />Revoke Key</DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={6} className="h-24 text-center">
+                                No API keys found.
                             </TableCell>
                         </TableRow>
-                    ))}
+                    )}
                 </TableBody>
             </Table>
         </div>

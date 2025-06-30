@@ -43,20 +43,28 @@ export function PaymentHistory({ transactions }: PaymentHistoryProps) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {transactions.map(tx => (
-                        <TableRow key={tx.id}>
-                            <TableCell className="pl-6">{new Date(tx.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</TableCell>
-                            <TableCell className="font-medium">${tx.amount.toFixed(2)}</TableCell>
-                            <TableCell>{tx.method}</TableCell>
-                            <TableCell>{getStatusBadge(tx.status)}</TableCell>
-                            <TableCell className="text-right pr-6">
-                                <Button variant="ghost" size="icon">
-                                    <Download className="h-4 w-4" />
-                                    <span className="sr-only">Download Receipt</span>
-                                </Button>
+                    {transactions.length > 0 ? (
+                        transactions.map(tx => (
+                            <TableRow key={tx.id}>
+                                <TableCell className="pl-6">{new Date(tx.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</TableCell>
+                                <TableCell className="font-medium">${tx.amount.toFixed(2)}</TableCell>
+                                <TableCell>{tx.method}</TableCell>
+                                <TableCell>{getStatusBadge(tx.status)}</TableCell>
+                                <TableCell className="text-right pr-6">
+                                    <Button variant="ghost" size="icon">
+                                        <Download className="h-4 w-4" />
+                                        <span className="sr-only">Download Receipt</span>
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={5} className="h-24 text-center">
+                                No transactions found.
                             </TableCell>
                         </TableRow>
-                    ))}
+                    )}
                 </TableBody>
             </Table>
         </div>

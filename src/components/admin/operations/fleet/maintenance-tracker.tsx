@@ -18,7 +18,7 @@ const getPriorityBadge = (priority: MaintenanceTask['priority']) => {
 
 export function MaintenanceTracker({ tasks }: MaintenanceTrackerProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <CardHeader>
                 <CardTitle>Maintenance Tracker</CardTitle>
                 <CardDescription>Log and view all vehicle maintenance tasks.</CardDescription>
@@ -36,17 +36,25 @@ export function MaintenanceTracker({ tasks }: MaintenanceTrackerProps) {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {tasks.map(task => (
-                                <TableRow key={task.id}>
-                                    <TableCell className="font-medium">{task.vehicleId}</TableCell>
-                                    <TableCell>{task.issue}</TableCell>
-                                    <TableCell>{task.dateReported}</TableCell>
-                                    <TableCell>{getPriorityBadge(task.priority)}</TableCell>
-                                    <TableCell>
-                                        <Badge variant={task.status === 'Completed' ? 'default' : 'secondary'}>{task.status}</Badge>
+                            {tasks.length > 0 ? (
+                                tasks.map(task => (
+                                    <TableRow key={task.id}>
+                                        <TableCell className="font-medium">{task.vehicleId}</TableCell>
+                                        <TableCell>{task.issue}</TableCell>
+                                        <TableCell>{task.dateReported}</TableCell>
+                                        <TableCell>{getPriorityBadge(task.priority)}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={task.status === 'Completed' ? 'default' : 'secondary'}>{task.status}</Badge>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="h-24 text-center">
+                                        No maintenance tasks found.
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            )}
                         </TableBody>
                     </Table>
                 </div>

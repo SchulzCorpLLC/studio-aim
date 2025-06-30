@@ -24,10 +24,10 @@ const StatCard = ({ title, value, icon: Icon }: KpiCardProps) => (
 export function DocumentKpiCards() {
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <StatCard title="Total Documents" value="3,450" icon={FileStack} />
-            <StatCard title="Pending Signatures" value="12" icon={FileClock} />
-            <StatCard title="Expiring Soon" value="3" icon={FileWarning} />
-            <StatCard title="Recently Viewed" value="25" icon={Eye} />
+            <StatCard title="Total Documents" value="0" icon={FileStack} />
+            <StatCard title="Pending Signatures" value="0" icon={FileClock} />
+            <StatCard title="Expiring Soon" value="0" icon={FileWarning} />
+            <StatCard title="Recently Viewed" value="0" icon={Eye} />
         </div>
     );
 }

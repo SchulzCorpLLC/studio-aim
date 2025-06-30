@@ -35,10 +35,10 @@ const StatCard = ({ title, value, change, icon: Icon }: KpiCardProps) => {
 export function LeadsKpiCards() {
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <StatCard title="Quotes Pending Response" value="12" change={15} icon={FileText} />
-            <StatCard title="Converted This Week" value="4" change={-10} icon={Check} />
-            <StatCard title="Follow-ups Due Today" value="3" change={25} icon={MessageSquare} />
-            <StatCard title="Cold Leads (>7 days)" value="8" change={5} icon={AlertTriangle} />
+            <StatCard title="Quotes Pending Response" value="0" change={0} icon={FileText} />
+            <StatCard title="Converted This Week" value="0" change={0} icon={Check} />
+            <StatCard title="Follow-ups Due Today" value="0" change={0} icon={MessageSquare} />
+            <StatCard title="Cold Leads (>7 days)" value="0" change={0} icon={AlertTriangle} />
         </div>
     );
 }

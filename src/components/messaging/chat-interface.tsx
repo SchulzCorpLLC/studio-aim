@@ -7,43 +7,18 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
-import { Paperclip, SendHorizontal, User, Mic, ArrowLeft } from 'lucide-react';
+import { Paperclip, SendHorizontal, User, Mic, ArrowLeft, MessageSquare } from 'lucide-react';
 
-const conversations = [
-  {
-    id: 1,
-    name: 'Support Team',
-    avatar: 'https://placehold.co/100x100.png',
-    lastMessage: "Of course! We're here to help.",
-    lastMessageTime: '10:42 AM',
-  },
-  {
-    id: 2,
-    name: 'John Smith (Driver)',
-    avatar: 'https://placehold.co/100x100.png',
-    lastMessage: 'I am on my way.',
-    lastMessageTime: '9:15 AM',
-  },
-];
+// Mock data is cleared for production readiness.
+// This should be replaced with data fetched from your backend.
+const conversations: any[] = [];
+const initialMessagesData: { [key: number]: any[] } = {};
 
-const initialMessagesData: { [key: number]: any[] } = {
-  1: [
-    { id: 1, sender: 'Support Team', text: 'Hi Alex, how can we help you with your move today?', time: '10:40 AM' },
-    { id: 2, sender: 'Alex Doe', text: 'Hello, I have a question about packing materials.', time: '10:41 AM' },
-    { id: 3, sender: 'Support Team', text: "Of course! We're here to help.", time: '10:42 AM' },
-  ],
-  2: [
-    { id: 1, sender: 'John Smith (Driver)', text: 'Hi Alex, just confirming I have the right address.', time: '9:14 AM' },
-    { id: 2, sender: 'Alex Doe', text: 'Yes, 123 Main St is correct.', time: '9:14 AM' },
-    { id: 3, sender: 'John Smith (Driver)', text: 'Great, thank you. I am on my way.', time: '9:15 AM' },
-  ],
-};
-
-const currentUser = 'Alex Doe';
+const currentUser = 'Alex Doe'; // This should come from user session
 
 export function ChatInterface() {
-  const [selectedConversation, setSelectedConversation] = useState(conversations[0]);
-  const [messages, setMessages] = useState(initialMessagesData[selectedConversation.id]);
+  const [selectedConversation, setSelectedConversation] = useState<any>(null);
+  const [messages, setMessages] = useState<any[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   
@@ -55,13 +30,16 @@ export function ChatInterface() {
     checkIsMobile();
     window.addEventListener("resize", checkIsMobile);
     
-    // Default to chat view on desktop
     if (window.innerWidth >= 768) {
         setView('chat');
+        if (conversations.length > 0 && !selectedConversation) {
+          setSelectedConversation(conversations[0]);
+          setMessages(initialMessagesData[conversations[0].id] || []);
+        }
     }
 
     return () => window.removeEventListener("resize", checkIsMobile);
-  }, []);
+  }, [selectedConversation]);
 
   const scrollToBottom = () => {
     setTimeout(() => {
@@ -74,7 +52,7 @@ export function ChatInterface() {
 
   const handleSelectConversation = (conversation: any) => {
     setSelectedConversation(conversation);
-    setMessages(initialMessagesData[conversation.id]);
+    setMessages(initialMessagesData[conversation.id] || []);
     if (isMobile) {
       setView('chat');
     }
@@ -82,7 +60,7 @@ export function ChatInterface() {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newMessage.trim() === '') return;
+    if (newMessage.trim() === '' || !selectedConversation) return;
     const newMsg = {
       id: messages.length + 1,
       sender: currentUser,
@@ -90,25 +68,14 @@ export function ChatInterface() {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
     
-    const updatedMessages = [...messages, newMsg];
-    setMessages(updatedMessages);
+    setMessages(prev => [...prev, newMsg]);
     setNewMessage('');
-
-    if (selectedConversation.name === 'Support Team') {
-      setTimeout(() => {
-          const replyMsg = {
-              id: updatedMessages.length + 1,
-              sender: selectedConversation.name,
-              text: `Thanks for your message! We'll get back to you shortly regarding "${newMessage.substring(0, 20)}...".`,
-              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          };
-          setMessages(prev => [...prev, replyMsg]);
-      }, 1500);
-    }
   };
   
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length) {
+      scrollToBottom();
+    }
   }, [messages]);
 
   return (
@@ -120,13 +87,13 @@ export function ChatInterface() {
                 <h2 className="text-xl font-bold">Messages</h2>
             </div>
             <ScrollArea className="flex-1">
-                {conversations.map((convo) => (
+                {conversations.length > 0 ? conversations.map((convo) => (
                     <button
                         key={convo.id}
                         onClick={() => handleSelectConversation(convo)}
                         className={cn(
                             'flex w-full items-start gap-4 p-4 text-left transition-colors hover:bg-accent',
-                            selectedConversation.id === convo.id && 'bg-accent'
+                            selectedConversation?.id === convo.id && 'bg-accent'
                         )}
                     >
                         <Avatar className="h-10 w-10 border">
@@ -139,13 +106,19 @@ export function ChatInterface() {
                         </div>
                         <span className="text-xs text-muted-foreground">{convo.lastMessageTime}</span>
                     </button>
-                ))}
+                )) : (
+                  <div className="text-center py-16 text-muted-foreground">
+                    <MessageSquare className="mx-auto h-12 w-12" />
+                    <h3 className="text-xl font-semibold mt-4">No Messages</h3>
+                    <p>Your conversations will appear here.</p>
+                  </div>
+                )}
             </ScrollArea>
         </div>
       )}
 
       {/* Right Pane: Active Chat */}
-      {(!isMobile || view === 'chat') && (
+      {(!isMobile || view === 'chat') && selectedConversation && (
         <div className="w-full md:w-2/3 flex flex-col bg-background">
             {/* Chat Header */}
             <div className="flex items-center gap-3 p-4 border-b">
@@ -219,6 +192,13 @@ export function ChatInterface() {
             </div>
         </div>
       )}
+      {(!isMobile || view === 'chat') && !selectedConversation && (
+         <div className="w-full md:w-2/3 flex flex-col bg-background items-center justify-center text-muted-foreground p-8 text-center">
+            <MessageSquare className="h-24 w-24" />
+            <h3 className="text-2xl font-semibold mt-4">Select a Conversation</h3>
+            <p>Choose a conversation from the list on the left to view messages.</p>
+         </div>
+       )}
     </Card>
   );
 }

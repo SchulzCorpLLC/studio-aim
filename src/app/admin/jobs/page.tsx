@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { JobsTable } from '@/components/admin/operations/jobs/jobs-table';
-import { mockJobs } from '@/components/admin/operations/mock-data';
+import type { Job } from '@/components/admin/operations/mock-data';
 import { PlusCircle, Calendar, List, Search } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
 
 export default function AdminJobsPage() {
   const [view, setView] = useState('list');
+  const [jobs] = useState<Job[]>([]);
   
   return (
     <div className="space-y-6">
@@ -38,12 +39,12 @@ export default function AdminJobsPage() {
         </div>
 
         <TabsContent value="list" className="mt-6">
-            <Card className="hover-none">
-                <JobsTable jobs={mockJobs} />
+            <Card>
+                <JobsTable jobs={jobs} />
             </Card>
         </TabsContent>
         <TabsContent value="calendar" className="mt-6">
-             <Card className="hover-none">
+             <Card>
                 <div className="text-center py-24 text-muted-foreground">
                     <Calendar className="mx-auto h-12 w-12" />
                     <h3 className="text-xl font-semibold mt-4">Calendar View Coming Soon</h3>

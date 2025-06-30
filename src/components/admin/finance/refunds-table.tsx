@@ -25,7 +25,7 @@ const getStatusBadge = (status: Refund['status']) => {
 
 export function RefundsTable({ refunds }: RefundsTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -40,27 +40,35 @@ export function RefundsTable({ refunds }: RefundsTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {refunds.map(refund => (
-                            <TableRow key={refund.id}>
-                                <TableCell className="font-medium">{refund.customerName}</TableCell>
-                                <TableCell className="font-mono text-xs">{refund.jobId}</TableCell>
-                                <TableCell>{refund.type}</TableCell>
-                                <TableCell>${refund.amount.toLocaleString()}</TableCell>
-                                <TableCell className="max-w-xs truncate">{refund.reason}</TableCell>
-                                <TableCell>{getStatusBadge(refund.status)}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><CheckCircle className="mr-2" />Approve</DropdownMenuItem>
-                                            <DropdownMenuItem className="text-destructive"><XCircle className="mr-2" />Reject</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                        {refunds.length > 0 ? (
+                            refunds.map(refund => (
+                                <TableRow key={refund.id}>
+                                    <TableCell className="font-medium">{refund.customerName}</TableCell>
+                                    <TableCell className="font-mono text-xs">{refund.jobId}</TableCell>
+                                    <TableCell>{refund.type}</TableCell>
+                                    <TableCell>${refund.amount.toLocaleString()}</TableCell>
+                                    <TableCell className="max-w-xs truncate">{refund.reason}</TableCell>
+                                    <TableCell>{getStatusBadge(refund.status)}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem><CheckCircle className="mr-2" />Approve</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive"><XCircle className="mr-2" />Reject</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={7} className="h-24 text-center">
+                                    No refunds found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

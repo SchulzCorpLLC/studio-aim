@@ -4,12 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockRefunds } from '@/components/admin/operations/mock-data';
 import type { Refund } from '@/components/admin/operations/mock-data';
 import { RefundsTable } from '@/components/admin/finance/refunds-table';
 
 export default function AdminRefundsPage() {
-    const [refunds] = useState<Refund[]>(mockRefunds);
+    const [refunds] = useState<Refund[]>([]);
 
     return (
         <div className="space-y-6">

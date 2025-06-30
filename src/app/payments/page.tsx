@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import type { Invoice, PaymentMethod } from '@/components/payments/payments-data';
-import { initialInvoices, initialPaymentMethods, initialTransactions } from '@/components/payments/payments-data';
 import { BalanceOverview } from '@/components/payments/balance-overview';
 import { InvoiceSummary } from '@/components/payments/invoice-summary';
 import { PaymentMethods } from '@/components/payments/payment-methods';
@@ -12,8 +11,9 @@ import { InvoiceViewerModal } from '@/components/payments/invoice-viewer-modal';
 import { Lock } from 'lucide-react';
 
 export default function PaymentsPage() {
-  const [invoices, setInvoices] = useState(initialInvoices);
-  const [paymentMethods, setPaymentMethods] = useState(initialPaymentMethods);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
+  const [transactions, setTransactions] = useState<any[]>([]);
 
   const [isAddMethodModalOpen, setAddMethodModalOpen] = useState(false);
   const [isInvoiceViewerOpen, setInvoiceViewerOpen] = useState(false);
@@ -63,7 +63,7 @@ export default function PaymentsPage() {
             <div className="lg:col-span-2 space-y-8">
                 <BalanceOverview balanceDue={balanceDue} dueDate={latestDueDate} />
                 <InvoiceSummary invoices={invoices} onViewInvoice={handleViewInvoice} />
-                <PaymentHistory transactions={initialTransactions} />
+                <PaymentHistory transactions={transactions} />
             </div>
             <div className="lg:col-span-1 space-y-8">
                  <PaymentMethods 

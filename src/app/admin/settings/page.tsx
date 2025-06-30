@@ -25,7 +25,7 @@ export default function AdminSettingsPage() {
             <CardContent className="space-y-6">
                 <div className="space-y-2">
                     <Label htmlFor="company-name">Company Name</Label>
-                    <Input id="company-name" defaultValue="MovePortal Inc." />
+                    <Input id="company-name" placeholder="Your Company Name" />
                 </div>
                  <div className="space-y-2">
                     <Label>Company Logo</Label>
@@ -39,11 +39,11 @@ export default function AdminSettingsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                      <div className="space-y-2">
                         <Label htmlFor="contact-email">Public Email</Label>
-                        <Input id="contact-email" type="email" defaultValue="contact@moveportal.com" />
+                        <Input id="contact-email" type="email" placeholder="contact@yourcompany.com" />
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="contact-phone">Public Phone</Label>
-                        <Input id="contact-phone" type="tel" defaultValue="(555) 867-5309" />
+                        <Input id="contact-phone" type="tel" placeholder="(555) 123-4567" />
                     </div>
                 </div>
             </CardContent>
@@ -60,16 +60,16 @@ export default function AdminSettingsPage() {
                 <CardContent className="space-y-6">
                     <div className="space-y-2">
                         <Label htmlFor="legal-address">Legal Address</Label>
-                        <Input id="legal-address" defaultValue="123 Market St, San Francisco, CA 94105" />
+                        <Input id="legal-address" placeholder="123 Example St, City, State 12345" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <Label htmlFor="tax-rate">Default Tax Rate (%)</Label>
-                            <Input id="tax-rate" type="number" defaultValue="8.5" />
+                            <Input id="tax-rate" type="number" placeholder="8.5" />
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="currency">Currency</Label>
-                            <Input id="currency" defaultValue="USD" />
+                            <Input id="currency" placeholder="USD" />
                         </div>
                     </div>
                 </CardContent>

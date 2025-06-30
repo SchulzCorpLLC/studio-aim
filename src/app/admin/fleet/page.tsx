@@ -4,11 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle, Search, Truck, Wrench } from 'lucide-react';
-import { mockFleet, mockMaintenance } from '@/components/admin/operations/mock-data';
+import type { Vehicle, MaintenanceTask } from '@/components/admin/operations/mock-data';
 import { VehicleCard } from '@/components/admin/operations/fleet/vehicle-card';
 import { MaintenanceTracker } from '@/components/admin/operations/fleet/maintenance-tracker';
 
 export default function AdminFleetPage() {
+    const [fleet] = useState<Vehicle[]>([]);
+    const [maintenance] = useState<MaintenanceTask[]>([]);
+
     return (
         <div className="space-y-6">
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -33,14 +36,21 @@ export default function AdminFleetPage() {
                     <TabsTrigger value="maintenance"><Wrench className="mr-2"/>Maintenance</TabsTrigger>
                 </TabsList>
                 <TabsContent value="vehicles" className="mt-6">
-                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {mockFleet.map((vehicle) => (
-                            <VehicleCard key={vehicle.id} vehicle={vehicle} />
-                        ))}
-                    </div>
+                     {fleet.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {fleet.map((vehicle) => (
+                                <VehicleCard key={vehicle.id} vehicle={vehicle} />
+                            ))}
+                        </div>
+                     ) : (
+                        <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-lg">
+                            <h3 className="text-xl font-semibold">No Vehicles Found</h3>
+                            <p>Add a vehicle to get started.</p>
+                        </div>
+                     )}
                 </TabsContent>
                 <TabsContent value="maintenance" className="mt-6">
-                   <MaintenanceTracker tasks={mockMaintenance} />
+                   <MaintenanceTracker tasks={maintenance} />
                 </TabsContent>
             </Tabs>
 

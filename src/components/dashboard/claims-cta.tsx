@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function ClaimsCta() {
     return (
-        <Card className="w-full rounded-lg shadow-md">
+        <Card variant="hover">
             <CardHeader className="flex flex-row items-center gap-4">
                 <ShieldAlert className="h-8 w-8 text-primary flex-shrink-0" />
                 <div>

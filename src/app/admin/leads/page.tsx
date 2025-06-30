@@ -5,12 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LeadsKpiCards } from '@/components/admin/operations/leads/kpi-cards';
 import { LeadsTable } from '@/components/admin/operations/leads/leads-table';
-import { mockLeads } from '@/components/admin/operations/mock-data';
 import type { Lead } from '@/components/admin/operations/mock-data';
 import { PlusCircle, Search } from 'lucide-react';
 
 export default function AdminLeadsPage() {
-  const [leads] = useState<Lead[]>(mockLeads);
+  const [leads] = useState<Lead[]>([]);
 
   return (
     <div className="space-y-6">

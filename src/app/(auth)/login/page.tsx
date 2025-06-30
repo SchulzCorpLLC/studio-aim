@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -32,10 +31,7 @@ export default function LoginPage() {
   return (
     <Card className="mx-auto max-w-sm w-[400px]">
       <CardHeader>
-        <CardTitle className="text-2xl">Login to MovePortal</CardTitle>
-        <CardDescription>
-          Enter your email and password to login to your account.
-        </CardDescription>
+        <CardTitle className="text-2xl">Welcome to MovePortal</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleLogin} className="grid gap-4">

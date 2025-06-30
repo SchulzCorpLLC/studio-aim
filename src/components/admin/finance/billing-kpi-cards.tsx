@@ -34,10 +34,10 @@ const StatCard = ({ title, value, change, icon: Icon }: KpiCardProps) => {
 export function BillingKpiCards() {
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <StatCard title="Revenue (This Month)" value="$45,231.89" change={20.1} icon={DollarSign} />
-            <StatCard title="Pending Payments" value="$3,150.00" change={-2.5} icon={Clock} />
-            <StatCard title="Refunds Issued" value="$842.00" change={5.2} icon={Undo2} />
-            <StatCard title="Avg. Job Value" value="$2,150" change={1.2} icon={BarChart} />
+            <StatCard title="Revenue (This Month)" value="$0.00" change={0} icon={DollarSign} />
+            <StatCard title="Pending Payments" value="$0.00" change={0} icon={Clock} />
+            <StatCard title="Refunds Issued" value="$0.00" change={0} icon={Undo2} />
+            <StatCard title="Avg. Job Value" value="$0.00" change={0} icon={BarChart} />
         </div>
     );
 }

@@ -3,17 +3,15 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle, Search, User, List } from 'lucide-react';
-import { mockCrew } from '@/components/admin/operations/mock-data';
 import type { CrewMember } from '@/components/admin/operations/mock-data';
 import { CrewCard } from '@/components/admin/operations/crew/crew-card';
 import { CrewTable } from '@/components/admin/operations/crew/crew-table';
 import { Card } from '@/components/ui/card';
 
 export default function AdminCrewPage() {
-    const [crew] = useState<CrewMember[]>(mockCrew);
+    const [crew] = useState<CrewMember[]>([]);
 
     return (
         <div className="space-y-6">
@@ -41,14 +39,21 @@ export default function AdminCrewPage() {
                 </div>
 
                 <TabsContent value="grid" className="mt-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {crew.map((member) => (
-                            <CrewCard key={member.id} member={member} />
-                        ))}
-                    </div>
+                    {crew.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {crew.map((member) => (
+                                <CrewCard key={member.id} member={member} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-lg">
+                             <h3 className="text-xl font-semibold">No Crew Members Found</h3>
+                            <p>Add a new crew member to get started.</p>
+                        </div>
+                    )}
                 </TabsContent>
                 <TabsContent value="table" className="mt-6">
-                   <Card className="hover-none">
+                   <Card>
                      <CrewTable crew={crew} />
                    </Card>
                 </TabsContent>

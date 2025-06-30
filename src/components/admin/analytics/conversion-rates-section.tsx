@@ -7,10 +7,10 @@ export function ConversionRatesSection() {
     return (
         <div className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <AnalyticsStatCard title="Total Leads (30d)" value="250" icon={FileText} description="+15% from last month" />
-                <AnalyticsStatCard title="Booked Jobs" value="80" icon={Briefcase} />
-                <AnalyticsStatCard title="Conversion Rate" value="32%" icon={Percent} />
-                <AnalyticsStatCard title="Avg. Time to Book" value="4.2 days" icon={Clock} />
+                <AnalyticsStatCard title="Total Leads (30d)" value="0" icon={FileText} />
+                <AnalyticsStatCard title="Booked Jobs" value="0" icon={Briefcase} />
+                <AnalyticsStatCard title="Conversion Rate" value="0%" icon={Percent} />
+                <AnalyticsStatCard title="Avg. Time to Book" value="0 days" icon={Clock} />
             </div>
             <Card>
                 <CardHeader>

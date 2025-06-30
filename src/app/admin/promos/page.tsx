@@ -3,12 +3,11 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockPromos } from '@/components/admin/operations/mock-data';
 import type { Promo } from '@/components/admin/operations/mock-data';
 import { PromosTable } from '@/components/admin/finance/promos-table';
 
 export default function AdminPromosPage() {
-    const [promos] = useState<Promo[]>(mockPromos);
+    const [promos] = useState<Promo[]>([]);
 
     return (
         <div className="space-y-6">

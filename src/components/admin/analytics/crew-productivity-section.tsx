@@ -7,10 +7,10 @@ export function CrewProductivitySection() {
     return (
         <div className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <AnalyticsStatCard title="Avg. Jobs per Crew" value="12" icon={Briefcase} description="per month" />
-                <AnalyticsStatCard title="Top Crew Rating" value="4.9" icon={Star} description="Mike Ross" />
-                <AnalyticsStatCard title="On-Time Start %" value="98%" icon={Clock} />
-                <AnalyticsStatCard title="Total Crew" value="8" icon={Users} />
+                <AnalyticsStatCard title="Avg. Jobs per Crew" value="0" icon={Briefcase} />
+                <AnalyticsStatCard title="Top Crew Rating" value="0.0" icon={Star} />
+                <AnalyticsStatCard title="On-Time Start %" value="0%" icon={Clock} />
+                <AnalyticsStatCard title="Total Crew" value="0" icon={Users} />
             </div>
             <Card>
                 <CardHeader>

@@ -4,12 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Star } from 'lucide-react';
-import { mockReviews } from '@/components/admin/operations/mock-data';
 import type { Review } from '@/components/admin/operations/mock-data';
 import { ReviewsTable } from '@/components/admin/crm/reviews-table';
 
 export default function AdminReviewsPage() {
-    const [reviews] = useState<Review[]>(mockReviews);
+    const [reviews] = useState<Review[]>([]);
 
     return (
         <div className="space-y-6">

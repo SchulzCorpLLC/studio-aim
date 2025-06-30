@@ -43,28 +43,36 @@ export function AdminInventoryTable({ items }: AdminInventoryTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {items.map(item => (
-                            <TableRow key={item.id}>
-                                <TableCell className="pl-6 font-medium">{item.name}</TableCell>
-                                <TableCell>{item.room}</TableCell>
-                                <TableCell>{item.quantity}</TableCell>
-                                <TableCell>
-                                    <div className="flex gap-2">
-                                        {item.tags?.map(tag => (
-                                            <Badge 
-                                                key={tag} 
-                                                variant={tag === 'Fragile' ? 'secondary' : 'destructive'}
-                                            >
-                                                {tag}
-                                            </Badge>
-                                        ))}
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-muted-foreground">
-                                    {item.notes && <div className="flex items-start gap-2"><StickyNote className="h-4 w-4 mt-1 flex-shrink-0" /><span>{item.notes}</span></div>}
+                        {items.length > 0 ? (
+                            items.map(item => (
+                                <TableRow key={item.id}>
+                                    <TableCell className="pl-6 font-medium">{item.name}</TableCell>
+                                    <TableCell>{item.room}</TableCell>
+                                    <TableCell>{item.quantity}</TableCell>
+                                    <TableCell>
+                                        <div className="flex gap-2">
+                                            {item.tags?.map(tag => (
+                                                <Badge 
+                                                    key={tag} 
+                                                    variant={tag === 'Fragile' ? 'secondary' : 'destructive'}
+                                                >
+                                                    {tag}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-muted-foreground">
+                                        {item.notes && <div className="flex items-start gap-2"><StickyNote className="h-4 w-4 mt-1 flex-shrink-0" /><span>{item.notes}</span></div>}
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={5} className="h-24 text-center">
+                                    No inventory items for this job.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

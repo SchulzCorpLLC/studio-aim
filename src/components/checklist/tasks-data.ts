@@ -25,7 +25,7 @@ export type TaskStage = 'Before' | 'During' | 'After';
 export const initialTasks: Record<TaskStage, Task[]> = {
     Before: [
         { id: 'b1', title: 'Declutter and Donate', description: 'Go through belongings and donate or discard items you no longer need.', completed: false, category: 'Packing', dueDate: '4 weeks before' },
-        { id: 'b2', title: 'Research Moving Companies', description: 'Get quotes and book your preferred mover.', completed: true, category: 'Logistics', dueDate: '3 weeks before' },
+        { id: 'b2', title: 'Research Moving Companies', description: 'Get quotes and book your preferred mover.', completed: false, category: 'Logistics', dueDate: '3 weeks before' },
         { id: 'b3', title: 'Order Packing Supplies', description: 'Boxes, tape, bubble wrap, and markers.', completed: false, category: 'Packing', dueDate: '3 weeks before' },
         { id: 'b4', title: 'Notify Utilities', description: 'Schedule service disconnection at your old home and connection at your new one.', completed: false, category: 'Utilities', dueDate: '2 weeks before' },
         { id: 'b5', title: 'Change Address', description: 'Update your address with USPS, banks, and subscriptions.', completed: false, category: 'Personal', dueDate: '1 week before' },

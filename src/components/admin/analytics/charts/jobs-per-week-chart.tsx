@@ -1,13 +1,8 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { Line, LineChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
-
-const chartData = [
-  { week: 'Week 1', scheduled: 40, completed: 32 },
-  { week: 'Week 2', scheduled: 30, completed: 28 },
-  { week: 'Week 3', scheduled: 52, completed: 48 },
-  { week: 'Week 4', scheduled: 45, completed: 45 },
-];
+import { Skeleton } from '@/components/ui/skeleton';
 
 const chartConfig = {
   scheduled: {
@@ -21,6 +16,17 @@ const chartConfig = {
 };
 
 export function JobsPerWeekChart() {
+  const [chartData, setChartData] = useState<any[]>([]);
+
+  useEffect(() => {
+    // In a real app, you would fetch this data.
+    // Leaving it empty for now to prep for real data.
+  }, []);
+
+  if (chartData.length === 0) {
+    return <Skeleton className="h-80 w-full" />;
+  }
+
   return (
     <ChartContainer config={chartConfig} className="h-80 w-full">
       <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>

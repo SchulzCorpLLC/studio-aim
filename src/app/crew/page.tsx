@@ -8,39 +8,18 @@ export default function CrewJobPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-3xl font-bold">Today's Job</CardTitle>
-          <CardDescription>Job ID: SF-OAK-102624</CardDescription>
+          <CardDescription>No job assigned for today.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 text-lg">
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <Clock className="h-6 w-6 text-primary" />
-              <span>9:00 AM - 11:00 AM</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <User className="h-6 w-6 text-primary" />
-              <span>Alex Doe</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Home className="h-6 w-6 text-primary" />
-              <span>123 Main St, San Francisco, CA 94105</span>
-            </div>
+          <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-lg">
+             <h3 className="text-xl font-semibold">No Job Details</h3>
+            <p>Please check with dispatch for your next assignment.</p>
           </div>
-          <Card className="bg-muted/50">
-            <CardHeader>
-                <CardTitle className="text-xl flex items-center gap-2">
-                    <FileText className="h-5 w-5" />
-                    Job Notes
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-base text-muted-foreground">"Please be careful with the antique grandfather clock in the living room. It's a family heirloom."</p>
-            </CardContent>
-          </Card>
         </CardContent>
       </Card>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Button size="lg" className="h-16 text-xl">Start Job</Button>
-        <Button size="lg" variant="outline" className="h-16 text-xl">Complete Job</Button>
+        <Button size="lg" className="h-16 text-xl" disabled>Start Job</Button>
+        <Button size="lg" variant="outline" className="h-16 text-xl" disabled>Complete Job</Button>
       </div>
     </div>
   );

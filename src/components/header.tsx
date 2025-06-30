@@ -58,15 +58,15 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-10 w-10 rounded-full">
             <Avatar className="h-10 w-10">
-              <AvatarImage src="https://placehold.co/100x100.png" alt="@customer" data-ai-hint="person portrait" />
-              <AvatarFallback>AD</AvatarFallback>
+              <AvatarImage src="https://placehold.co/100x100.png" alt="User" data-ai-hint="person portrait" />
+              <AvatarFallback>U</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-56">
           <DropdownMenuLabel>
-             <p>Alex Doe</p>
-             <p className="text-xs text-muted-foreground font-normal">alex.doe@example.com</p>
+             <p>My Account</p>
+             <p className="text-xs text-muted-foreground font-normal">user@example.com</p>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>

@@ -7,8 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal, Edit, Trash2, MessageSquare, Briefcase, Star, Ban } from 'lucide-react';
-import { cn } from '@/lib/utils';
-
 
 interface CustomersTableProps {
     customers: Customer[];
@@ -40,7 +38,7 @@ const TagBadge = ({ tag }: { tag: Customer['tags'][number] }) => {
 
 export function CustomersTable({ customers }: CustomersTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -54,43 +52,51 @@ export function CustomersTable({ customers }: CustomersTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {customers.map(customer => (
-                            <TableRow key={customer.id}>
-                                <TableCell className="font-medium">
-                                    <div className="flex items-center gap-3">
-                                        <Avatar>
-                                            <AvatarImage src={customer.avatarUrl} alt={customer.name} data-ai-hint="person portrait" />
-                                            <AvatarFallback>{customer.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                        </Avatar>
-                                        <div>
-                                            <p>{customer.name}</p>
-                                            <p className="text-xs text-muted-foreground">{customer.email}</p>
+                        {customers.length > 0 ? (
+                            customers.map(customer => (
+                                <TableRow key={customer.id}>
+                                    <TableCell className="font-medium">
+                                        <div className="flex items-center gap-3">
+                                            <Avatar>
+                                                <AvatarImage src={customer.avatarUrl} alt={customer.name} data-ai-hint="person portrait" />
+                                                <AvatarFallback>{customer.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                            </Avatar>
+                                            <div>
+                                                <p>{customer.name}</p>
+                                                <p className="text-xs text-muted-foreground">{customer.email}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </TableCell>
-                                <TableCell>{getStatusBadge(customer.status)}</TableCell>
-                                <TableCell>{customer.jobsCount}</TableCell>
-                                <TableCell>${customer.totalSpent.toLocaleString()}</TableCell>
-                                <TableCell>
-                                    <div className="flex gap-1">
-                                        {customer.tags.map(tag => <TagBadge key={tag} tag={tag} />)}
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><Briefcase className="mr-2" />View Jobs</DropdownMenuItem>
-                                            <DropdownMenuItem><MessageSquare className="mr-2" />Send Message</DropdownMenuItem>
-                                            <DropdownMenuItem><Edit className="mr-2" />Edit Profile</DropdownMenuItem>
-                                            <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2" />Archive</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                                    </TableCell>
+                                    <TableCell>{getStatusBadge(customer.status)}</TableCell>
+                                    <TableCell>{customer.jobsCount}</TableCell>
+                                    <TableCell>${customer.totalSpent.toLocaleString()}</TableCell>
+                                    <TableCell>
+                                        <div className="flex gap-1">
+                                            {customer.tags.map(tag => <TagBadge key={tag} tag={tag} />)}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem><Briefcase className="mr-2" />View Jobs</DropdownMenuItem>
+                                                <DropdownMenuItem><MessageSquare className="mr-2" />Send Message</DropdownMenuItem>
+                                                <DropdownMenuItem><Edit className="mr-2" />Edit Profile</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2" />Archive</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center">
+                                    No customers found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

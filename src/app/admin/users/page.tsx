@@ -1,11 +1,14 @@
 'use client';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockAdminUsers } from '@/components/admin/operations/mock-data';
+import type { AdminUser } from '@/components/admin/operations/mock-data';
 import { UsersTable } from '@/components/admin/settings/users-table';
 
 export default function AdminUsersPage() {
+  const [users] = useState<AdminUser[]>([]);
+
   return (
     <div className="space-y-6">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -24,7 +27,7 @@ export default function AdminUsersPage() {
             <Input placeholder="Search by name or email..." className="pl-10 h-12 text-base" />
         </div>
 
-        <UsersTable users={mockAdminUsers} />
+        <UsersTable users={users} />
     </div>
   );
 }

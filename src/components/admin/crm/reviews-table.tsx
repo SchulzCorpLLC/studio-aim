@@ -24,7 +24,7 @@ const RatingStars = ({ rating }: { rating: number }) => (
 
 export function ReviewsTable({ reviews }: ReviewsTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -38,38 +38,46 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {reviews.map(review => (
-                            <TableRow key={review.id}>
-                                <TableCell>
-                                    <div className="font-medium">{review.customerName}</div>
-                                    <div className="text-xs text-muted-foreground">{review.date}</div>
-                                </TableCell>
-                                <TableCell>
-                                    <RatingStars rating={review.rating} />
-                                </TableCell>
-                                <TableCell>
-                                    <p className="max-w-xs truncate">{review.reviewText}</p>
-                                </TableCell>
-                                <TableCell className="font-mono text-xs">{review.jobId}</TableCell>
-                                <TableCell>
-                                    <Badge variant={review.responseStatus === 'Responded' ? 'default' : 'secondary'}>
-                                        {review.responseStatus}
-                                    </Badge>
-                                </TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem>View Full Review</DropdownMenuItem>
-                                            <DropdownMenuItem><MessageSquare className="mr-2" />Reply</DropdownMenuItem>
-                                            <DropdownMenuItem><CheckCircle className="mr-2" />Mark as Resolved</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                        {reviews.length > 0 ? (
+                            reviews.map(review => (
+                                <TableRow key={review.id}>
+                                    <TableCell>
+                                        <div className="font-medium">{review.customerName}</div>
+                                        <div className="text-xs text-muted-foreground">{review.date}</div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <RatingStars rating={review.rating} />
+                                    </TableCell>
+                                    <TableCell>
+                                        <p className="max-w-xs truncate">{review.reviewText}</p>
+                                    </TableCell>
+                                    <TableCell className="font-mono text-xs">{review.jobId}</TableCell>
+                                    <TableCell>
+                                        <Badge variant={review.responseStatus === 'Responded' ? 'default' : 'secondary'}>
+                                            {review.responseStatus}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem>View Full Review</DropdownMenuItem>
+                                                <DropdownMenuItem><MessageSquare className="mr-2" />Reply</DropdownMenuItem>
+                                                <DropdownMenuItem><CheckCircle className="mr-2" />Mark as Resolved</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center">
+                                    No reviews found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -17,15 +18,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useRouter } from 'next/navigation';
+import { signup } from '@/app/actions';
 
 export default function SignupPage() {
-  const router = useRouter();
+  const [role, setRole] = useState('client');
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd handle signup here
-    router.push('/dashboard-redirect');
+    await signup(role);
   };
 
   return (
@@ -57,7 +57,7 @@ export default function SignupPage() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="role">I am a...</Label>
-            <Select defaultValue="client">
+            <Select value={role} onValueChange={setRole}>
               <SelectTrigger id="role">
                 <SelectValue placeholder="Select your role" />
               </SelectTrigger>

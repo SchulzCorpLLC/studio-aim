@@ -10,10 +10,10 @@ import { InventoryCategory as AddItemModal } from '@/components/inventory/invent
 import { InventoryEstimatesBar } from '@/components/inventory/inventory-estimates-bar';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import type { InventoryItem as InventoryItemType, Room } from '@/components/inventory/inventory-data';
-import { initialInventoryItems, roomOptions } from '@/components/inventory/inventory-data';
+import { roomOptions } from '@/components/inventory/inventory-data';
 
 export default function InventoryPage() {
-  const [items, setItems] = useState<InventoryItemType[]>(initialInventoryItems);
+  const [items, setItems] = useState<InventoryItemType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemToEdit, setItemToEdit] = useState<InventoryItemType | null>(null);
   
@@ -69,13 +69,15 @@ export default function InventoryPage() {
     const estimatedWeightCalc = totalCubicFeetCalc * 7;
     
     let recTruck: string;
-    if (totalCubicFeetCalc < 250) recTruck = 'Cargo Van';
+    if (totalCubicFeetCalc === 0) recTruck = "N/A";
+    else if (totalCubicFeetCalc < 250) recTruck = 'Cargo Van';
     else if (totalCubicFeetCalc < 500) recTruck = "15' Truck";
     else if (totalCubicFeetCalc < 1000) recTruck = "20' Truck";
     else recTruck = "26' Truck";
 
     let crewSize: string;
-    if (totalCubicFeetCalc < 500) crewSize = '2 Movers';
+    if (totalCubicFeetCalc === 0) crewSize = "N/A";
+    else if (totalCubicFeetCalc < 500) crewSize = '2 Movers';
     else if (totalCubicFeetCalc < 1500) crewSize = '3 Movers';
     else crewSize = '4+ Movers';
 
@@ -161,10 +163,17 @@ export default function InventoryPage() {
             ))}
         </div>
         
-        {filteredItems.length === 0 && (
+        {items.length > 0 && filteredItems.length === 0 && (
             <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-lg">
                 <h3 className="text-xl font-semibold">No items found</h3>
-                <p>Try adjusting your search or filter, or add a new item.</p>
+                <p>Try adjusting your search or filter.</p>
+            </div>
+        )}
+
+        {items.length === 0 && (
+            <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-lg">
+                <h3 className="text-xl font-semibold">Your Inventory is Empty</h3>
+                <p>Click "Add Item" to start building your inventory list.</p>
             </div>
         )}
 

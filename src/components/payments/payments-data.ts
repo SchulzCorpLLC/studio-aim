@@ -28,54 +28,8 @@ export type Transaction = {
   status: TransactionStatus;
 };
 
-export const initialInvoices: Invoice[] = [
-  {
-    id: 'INV-2024-001',
-    date: '2024-10-15',
-    dueDate: '2024-10-30',
-    services: [
-        { description: 'Moving Services (Base)', amount: 400 },
-        { description: 'Packing Supplies', amount: 80 }
-    ],
-    amount: 480.00,
-    status: 'Open',
-  },
-  {
-    id: 'INV-2024-000',
-    date: '2024-09-01',
-    dueDate: '2024-09-15',
-    services: [
-        { description: 'Booking Deposit', amount: 100 }
-    ],
-    amount: 100.00,
-    status: 'Paid',
-  },
-];
+export const initialInvoices: Invoice[] = [];
 
-export const initialPaymentMethods: PaymentMethod[] = [
-  {
-    id: 'pm_1',
-    type: 'Visa',
-    last4: '4242',
-    expiry: '12/26',
-    isDefault: true,
-  },
-  {
-    id: 'pm_2',
-    type: 'Mastercard',
-    last4: '5555',
-    expiry: '08/25',
-    isDefault: false,
-  },
-];
+export const initialPaymentMethods: PaymentMethod[] = [];
 
-export const initialTransactions: Transaction[] = [
-  {
-    id: 'TR-001',
-    date: '2024-09-01',
-    amount: 100.00,
-    method: 'Visa •••• 4242',
-    invoiceId: 'INV-2024-000',
-    status: 'Success',
-  },
-];
+export const initialTransactions: Transaction[] = [];

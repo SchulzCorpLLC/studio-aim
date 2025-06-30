@@ -25,7 +25,7 @@ const getStatusBadge = (status: AdminUser['status']) => {
 
 export function UsersTable({ users }: UsersTableProps) {
     return (
-        <Card className="hover-none">
+        <Card>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -38,39 +38,47 @@ export function UsersTable({ users }: UsersTableProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {users.map(user => (
-                            <TableRow key={user.id}>
-                                <TableCell className="font-medium">
-                                    <div className="flex items-center gap-3">
-                                        <Avatar>
-                                            <AvatarImage src={user.avatarUrl} alt={user.name} data-ai-hint="person portrait" />
-                                            <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                        </Avatar>
-                                        <div>
-                                            <p>{user.name}</p>
-                                            <p className="text-xs text-muted-foreground">{user.email}</p>
+                        {users.length > 0 ? (
+                            users.map(user => (
+                                <TableRow key={user.id}>
+                                    <TableCell className="font-medium">
+                                        <div className="flex items-center gap-3">
+                                            <Avatar>
+                                                <AvatarImage src={user.avatarUrl} alt={user.name} data-ai-hint="person portrait" />
+                                                <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                            </Avatar>
+                                            <div>
+                                                <p>{user.name}</p>
+                                                <p className="text-xs text-muted-foreground">{user.email}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </TableCell>
-                                <TableCell><Badge variant="outline">{user.role}</Badge></TableCell>
-                                <TableCell>{getStatusBadge(user.status)}</TableCell>
-                                <TableCell>{user.lastLogin}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><Edit className="mr-2 h-4 w-4" />Edit User</DropdownMenuItem>
-                                            <DropdownMenuItem><Lock className="mr-2 h-4 w-4" />Change Permissions</DropdownMenuItem>
-                                            <DropdownMenuItem><Mail className="mr-2 h-4 w-4" />Resend Invitation</DropdownMenuItem>
-                                            <DropdownMenuSeparator />
-                                            <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2 h-4 w-4" />Deactivate User</DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                                    </TableCell>
+                                    <TableCell><Badge variant="outline">{user.role}</Badge></TableCell>
+                                    <TableCell>{getStatusBadge(user.status)}</TableCell>
+                                    <TableCell>{user.lastLogin}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem><Edit className="mr-2 h-4 w-4" />Edit User</DropdownMenuItem>
+                                                <DropdownMenuItem><Lock className="mr-2 h-4 w-4" />Change Permissions</DropdownMenuItem>
+                                                <DropdownMenuItem><Mail className="mr-2 h-4 w-4" />Resend Invitation</DropdownMenuItem>
+                                                <DropdownMenuSeparator />
+                                                <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2 h-4 w-4" />Deactivate User</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={5} className="h-24 text-center">
+                                    No users found.
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </div>

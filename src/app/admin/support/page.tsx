@@ -10,12 +10,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { PlusCircle, Search } from 'lucide-react';
-import { mockSupportTickets } from '@/components/admin/operations/mock-data';
 import type { SupportTicket } from '@/components/admin/operations/mock-data';
 import { SupportTicketsTable } from '@/components/admin/support/support-tickets-table';
 
 export default function AdminSupportPage() {
-  const [tickets] = useState<SupportTicket[]>(mockSupportTickets);
+  const [tickets] = useState<SupportTicket[]>([]);
 
   return (
     <div className="space-y-6">

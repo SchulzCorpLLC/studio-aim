@@ -1,13 +1,8 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { Pie, PieChart } from 'recharts';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
-
-const chartData = [
-  { source: 'Website', revenue: 45000, fill: 'var(--color-website)' },
-  { source: 'Referral', revenue: 25000, fill: 'var(--color-referral)' },
-  { source: 'Ads', revenue: 10000, fill: 'var(--color-ads)' },
-  { source: 'Repeat', revenue: 5231, fill: 'var(--color-repeat)' },
-];
+import { Skeleton } from '@/components/ui/skeleton';
 
 const chartConfig = {
   revenue: { label: 'Revenue' },
@@ -18,6 +13,17 @@ const chartConfig = {
 };
 
 export function RevenueBySourceChart() {
+  const [chartData, setChartData] = useState<any[]>([]);
+
+  useEffect(() => {
+    // In a real app, you would fetch this data.
+    // Leaving it empty for now to prep for real data.
+  }, []);
+
+  if (chartData.length === 0) {
+    return <Skeleton className="h-80 w-full" />;
+  }
+
   return (
     <ChartContainer config={chartConfig} className="h-80 w-full">
       <PieChart>
