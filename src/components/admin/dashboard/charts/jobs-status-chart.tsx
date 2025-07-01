@@ -11,8 +11,13 @@ const chartConfig = {
   },
 };
 
+interface JobStatusData {
+  status: string;
+  jobs: number;
+}
+
 export function JobsStatusChart() {
-    const [data, setData] = useState<any[]>([]);
+    const [data] = useState<JobStatusData[]>([]);
 
     useEffect(() => {
       // In a real app, you would fetch this data from your backend.

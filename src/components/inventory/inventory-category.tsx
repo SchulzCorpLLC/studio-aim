@@ -62,7 +62,7 @@ export function InventoryCategory({ isOpen, onClose, onSubmit, itemToEdit }: Inv
     onClose();
   };
 
-  const handleChange = (field: keyof typeof item, value: any) => {
+  const handleChange = (field: keyof typeof item, value: string | number | boolean | undefined) => {
     setItem(prev => ({ ...prev, [field]: value }));
   };
 

@@ -61,7 +61,7 @@ export function InventoryItem({ item, onUpdate, onDelete, onEdit }: InventoryIte
             </div>
             
             {item.notes && (
-                <p className="text-sm text-muted-foreground p-3 bg-muted/50 rounded-md flex gap-2 mt-3"><StickyNote className="h-4 w-4 mt-0.5 flex-shrink-0" /> "{item.notes}"</p>
+                <p className="text-sm text-muted-foreground p-3 bg-muted/50 rounded-md flex gap-2 mt-3"><StickyNote className="h-4 w-4 mt-0.5 flex-shrink-0" /> &quot;{item.notes}&quot;</p>
             )}
         </div>
 

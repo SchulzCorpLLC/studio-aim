@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Upload, Download } from 'lucide-react';
 import Image from 'next/image';
 
@@ -20,7 +19,7 @@ export default function AdminSettingsPage() {
            <Card>
             <CardHeader>
                 <CardTitle>Company Profile</CardTitle>
-                <CardDescription>Update your company's public information.</CardDescription>
+                <CardDescription>Update your company&apos;s public information.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
                 <div className="space-y-2">

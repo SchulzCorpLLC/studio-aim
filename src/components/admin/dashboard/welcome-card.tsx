@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ProgressTracker } from "./progress-tracker";
+import { ProgressTracker } from "@/components/dashboard/progress-tracker";
 
 export function WelcomeCard() {
   return (
@@ -8,7 +8,7 @@ export function WelcomeCard() {
       <CardHeader>
         <CardTitle className="text-3xl tracking-tight">Welcome!</CardTitle>
         <CardDescription className="text-base pt-1">
-          Here's an overview of your upcoming move.
+          Here&apos;s an overview of your upcoming move.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

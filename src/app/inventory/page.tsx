@@ -103,7 +103,7 @@ export default function InventoryPage() {
         <Card>
             <CardHeader>
                 <CardTitle className="text-2xl">Your Inventory Overview</CardTitle>
-                <CardDescription>A summary of the items you've logged so far.</CardDescription>
+                <CardDescription>A summary of the items you&apos;ve logged so far.</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -173,7 +173,7 @@ export default function InventoryPage() {
         {items.length === 0 && (
             <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-lg">
                 <h3 className="text-xl font-semibold">Your Inventory is Empty</h3>
-                <p>Click "Add Item" to start building your inventory list.</p>
+                <p>Click &quot;Add Item&quot; to start building your inventory list.</p>
             </div>
         )}
 

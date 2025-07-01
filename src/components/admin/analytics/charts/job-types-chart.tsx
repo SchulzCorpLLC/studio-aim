@@ -26,8 +26,13 @@ const chartConfig = {
   },
 };
 
+interface JobTypeData {
+  type: string;
+  jobs: number;
+}
+
 export function JobTypesChart() {
-  const [chartData, setChartData] = useState<any[]>([]);
+  const [chartData] = useState<JobTypeData[]>([]);
 
   useEffect(() => {
     // In a real app, you would fetch this data.

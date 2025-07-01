@@ -1,13 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Clock, User, Home, FileText } from 'lucide-react';
 
 export default function CrewJobPage() {
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="text-3xl font-bold">Today's Job</CardTitle>
+          <CardTitle className="text-3xl font-bold">Today&apos;s Job</CardTitle>
           <CardDescription>No job assigned for today.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 text-lg">

@@ -1,4 +1,3 @@
-
 import type { NavItem } from './nav';
 import {
   LayoutDashboard,
@@ -9,8 +8,6 @@ import {
   MessageSquare,
   BarChart2,
   Settings,
-  Plug,
-  KeyRound,
 } from 'lucide-react';
 
 export const adminNavItems: NavItem[] = [

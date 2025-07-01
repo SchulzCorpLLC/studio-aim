@@ -8,7 +8,7 @@ export function WelcomeCard() {
       <CardHeader>
         <CardTitle className="text-2xl tracking-tight md:text-3xl">Welcome!</CardTitle>
         <CardDescription className="pt-1 text-sm md:text-base">
-          Here's an overview of your upcoming move.
+          Here&apos;s an overview of your upcoming move.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

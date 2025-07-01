@@ -1,6 +1,6 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowUp, ArrowDown, FileText, Check, MessageSquare, Clock, AlertTriangle } from "lucide-react";
+import { ArrowUp, ArrowDown, FileText, Check, MessageSquare, AlertTriangle } from "lucide-react";
 
 interface KpiCardProps {
     title: string;

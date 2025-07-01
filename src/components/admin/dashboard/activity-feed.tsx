@@ -2,9 +2,16 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { AlertTriangle, CheckCircle, Info, FileText, Truck, User, List } from "lucide-react";
+import { List } from "lucide-react";
 
-const mockActivities: any[] = [
+interface Activity {
+  status: 'New' | 'Info' | 'Warning';
+  text: string;
+  time: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+const mockActivities: Activity[] = [
   // Example data has been removed for cleanup.
   // This should be populated from a real-time data source.
 ];

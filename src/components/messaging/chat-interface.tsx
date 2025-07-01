@@ -9,16 +9,31 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { Paperclip, SendHorizontal, User, Mic, ArrowLeft, MessageSquare } from 'lucide-react';
 
+interface Message {
+  id: number;
+  sender: string;
+  text: string;
+  time: string;
+}
+
+interface Conversation {
+  id: number;
+  name: string;
+  avatar: string;
+  lastMessage: string;
+  lastMessageTime: string;
+}
+
 // Mock data is cleared for production readiness.
 // This should be replaced with data fetched from your backend.
-const conversations: any[] = [];
-const initialMessagesData: { [key: number]: any[] } = {};
+const conversations: Conversation[] = [];
+const initialMessagesData: { [key: number]: Message[] } = {};
 
 const currentUser = 'Alex Doe'; // This should come from user session
 
 export function ChatInterface() {
-  const [selectedConversation, setSelectedConversation] = useState<any>(null);
-  const [messages, setMessages] = useState<any[]>([]);
+  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   
@@ -50,7 +65,7 @@ export function ChatInterface() {
     }, 100);
   };
 
-  const handleSelectConversation = (conversation: any) => {
+  const handleSelectConversation = (conversation: Conversation) => {
     setSelectedConversation(conversation);
     setMessages(initialMessagesData[conversation.id] || []);
     if (isMobile) {
@@ -61,7 +76,7 @@ export function ChatInterface() {
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (newMessage.trim() === '' || !selectedConversation) return;
-    const newMsg = {
+    const newMsg: Message = {
       id: messages.length + 1,
       sender: currentUser,
       text: newMessage,
@@ -198,7 +213,7 @@ export function ChatInterface() {
             <h3 className="text-2xl font-semibold mt-4">Select a Conversation</h3>
             <p>Choose a conversation from the list on the left to view messages.</p>
          </div>
-       )}
+      )}
     </Card>
   );
 }

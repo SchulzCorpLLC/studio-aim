@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
-import { Bed, Armchair, Tv, Box, Lamp, UtensilsCrossed, Monitor, HelpCircle } from 'lucide-react';
+import { Bed, Armchair, Box, UtensilsCrossed, Monitor, HelpCircle } from 'lucide-react';
 
 export const roomOptions = ["Living Room", "Dining Room", "Kitchen", "Bedroom", "Office", "Garage", "Other"] as const;
 export type Room = typeof roomOptions[number];

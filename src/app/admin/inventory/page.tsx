@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { mockJobs, mockInventories } from '@/components/admin/operations/mock-data';
 import { AdminInventoryTable } from '@/components/admin/operations/inventory/admin-inventory-table';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Download } from 'lucide-react';
 
 export default function AdminInventoryPage() {

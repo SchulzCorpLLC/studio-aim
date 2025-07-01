@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlusCircle, Search, User, List } from 'lucide-react';
+import { Search, User, List } from 'lucide-react';
 import type { CrewMember } from '@/components/admin/operations/mock-data';
 import { CrewCard } from '@/components/admin/operations/crew/crew-card';
 import { CrewTable } from '@/components/admin/operations/crew/crew-table';

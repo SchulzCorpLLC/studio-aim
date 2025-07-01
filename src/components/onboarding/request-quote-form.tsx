@@ -67,7 +67,7 @@ export function RequestQuoteForm() {
     <Card className="w-full max-w-2xl">
       <CardHeader>
         <CardTitle className="text-3xl">Get a Free Moving Quote</CardTitle>
-        <CardDescription>Tell us about your move, and we'll get back to you with a quote in 24 hours.</CardDescription>
+        <CardDescription>Tell us about your move, and we&apos;ll get back to you with a quote in 24 hours.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-6">

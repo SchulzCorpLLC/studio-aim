@@ -12,8 +12,13 @@ const chartConfig = {
   },
 };
 
+interface RevenueData {
+  date: string;
+  revenue: number;
+}
+
 export function RevenueChart() {
-  const [data, setData] = useState<any[]>([]);
+  const [data] = useState<RevenueData[]>([]);
 
   useEffect(() => {
     // In a real app, you would fetch this data from your backend.

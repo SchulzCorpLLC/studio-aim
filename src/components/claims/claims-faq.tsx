@@ -29,7 +29,7 @@ export function ClaimsFaq() {
                      <AccordionItem value="item-3">
                         <AccordionTrigger>What documentation do I need?</AccordionTrigger>
                         <AccordionContent>
-                            To speed up the process, please provide clear photos of the damage, the item's original packaging if possible, and any proof of value (like a receipt). The more information you provide, the better.
+                            To speed up the process, please provide clear photos of the damage, the item&apos;s original packaging if possible, and any proof of value (like a receipt). The more information you provide, the better.
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-4" className="border-b-0">

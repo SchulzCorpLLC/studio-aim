@@ -14,8 +14,13 @@ const chartConfig = {
   paul: { color: 'hsl(var(--chart-1))' },
 };
 
+interface CrewJobData {
+  name: string;
+  jobs: number;
+}
+
 export function CrewJobsChart() {
-  const [chartData, setChartData] = useState<any[]>([]);
+  const [chartData] = useState<CrewJobData[]>([]);
 
   useEffect(() => {
     // In a real app, you would fetch this data.

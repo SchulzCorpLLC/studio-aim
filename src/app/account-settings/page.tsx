@@ -11,8 +11,6 @@ import { Progress } from "@/components/ui/progress";
 import Link from 'next/link';
 
 import {
-  Smartphone,
-  Laptop,
   LifeBuoy,
   FileText,
   Star,
@@ -128,7 +126,7 @@ export default function AccountSettingsPage() {
                 <div className="flex items-center justify-between">
                     <Label htmlFor="email-updates" className="flex flex-col gap-1 cursor-pointer">
                         <span>Move Status Updates</span>
-                        <span className="font-normal text-muted-foreground">Get notified about your move's progress.</span>
+                        <span className="font-normal text-muted-foreground">Get notified about your move&apos;s progress.</span>
                     </Label>
                     <Switch id="email-updates" defaultChecked />
                 </div>

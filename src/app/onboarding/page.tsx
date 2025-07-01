@@ -40,7 +40,7 @@ export default function OnboardingPage() {
         <CardHeader>
           <CardTitle className="text-2xl">Welcome to MovePortal</CardTitle>
           <CardDescription>
-            Let's get your account set up. ({step}/2)
+            Let&apos;s get your account set up. ({step}/2)
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">

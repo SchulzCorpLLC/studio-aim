@@ -42,7 +42,7 @@ export default function ClaimsPage() {
                     <ShieldAlert className="h-6 w-6 text-primary" />
                     <span>Your Claims Overview</span>
                 </CardTitle>
-                <CardDescription>You have {openClaimsCount} open claim(s). We're here to help.</CardDescription>
+                <CardDescription>You have {openClaimsCount} open claim(s). We&apos;re here to help.</CardDescription>
             </div>
             <Button onClick={() => setIsModalOpen(true)} className="w-full md:w-auto">
               <PlusCircle className="mr-2 h-4 w-4" />

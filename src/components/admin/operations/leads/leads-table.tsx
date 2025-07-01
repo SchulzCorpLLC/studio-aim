@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreHorizontal, ArrowRight, Pencil, MessageSquare, XCircle, CheckCircle2, Phone, Clock, Plus } from 'lucide-react';
+import { MoreHorizontal, Pencil, MessageSquare, XCircle, CheckCircle2, Clock, Plus } from 'lucide-react';
 
 interface LeadsTableProps {
     leads: Lead[];

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { PlusCircle, Search, Upload } from 'lucide-react';
+import { Search, Upload } from 'lucide-react';
 import type { Document } from '@/components/admin/operations/mock-data';
 import { DocumentKpiCards } from '@/components/admin/documents/document-kpi-cards';
 import { DocumentsTable } from '@/components/admin/documents/documents-table';

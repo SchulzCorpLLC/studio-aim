@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Phone, MessageSquare, Briefcase, CheckCircle2, XCircle, Clock } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface CrewCardProps {
     member: CrewMember;

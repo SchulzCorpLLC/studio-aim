@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreHorizontal, FileText, CheckCircle2, Clock, AlertTriangle, Send, Download, XCircle } from 'lucide-react';
+import { MoreHorizontal, FileText, CheckCircle2, AlertTriangle, Send, Download, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface InvoicesTableProps {

@@ -76,7 +76,7 @@ export function ClaimHistory({ claims }: ClaimHistoryProps) {
         ) : (
             <div className="text-center py-16 px-6">
                 <p className="text-muted-foreground">You have not submitted any claims yet.</p>
-                <p className="text-sm text-muted-foreground/80">Click "Start New Claim" to begin.</p>
+                <p className="text-sm text-muted-foreground/80">Click &quot;Start New Claim&quot; to begin.</p>
             </div>
         )}
       </CardContent>

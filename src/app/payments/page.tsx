@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import type { Invoice, PaymentMethod } from '@/components/payments/payments-data';
+import type { Invoice, PaymentMethod, Transaction } from '@/components/payments/payments-data';
 import { BalanceOverview } from '@/components/payments/balance-overview';
 import { InvoiceSummary } from '@/components/payments/invoice-summary';
 import { PaymentMethods } from '@/components/payments/payment-methods';
@@ -11,9 +11,9 @@ import { InvoiceViewerModal } from '@/components/payments/invoice-viewer-modal';
 import { Lock } from 'lucide-react';
 
 export default function PaymentsPage() {
-  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [invoices] = useState<Invoice[]>([]);
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
-  const [transactions, setTransactions] = useState<any[]>([]);
+  const [transactions] = useState<Transaction[]>([]);
 
   const [isAddMethodModalOpen, setAddMethodModalOpen] = useState(false);
   const [isInvoiceViewerOpen, setInvoiceViewerOpen] = useState(false);

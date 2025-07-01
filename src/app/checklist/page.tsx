@@ -50,7 +50,7 @@ export default function ChecklistPage() {
             <Card className="overflow-hidden">
                 <CardHeader>
                     <CardTitle className="text-3xl">Ultimate Move Checklist</CardTitle>
-                    <CardDescription>Stay organized and on track. We've pre-filled a list of tasks to guide you.</CardDescription>
+                    <CardDescription>Stay organized and on track. We&apos;ve pre-filled a list of tasks to guide you.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     {/* Progress Tracker */}

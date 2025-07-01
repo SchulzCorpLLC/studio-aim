@@ -1,6 +1,6 @@
 'use server';
 
-import { authenticateUser, clearSession, getSession } from '@/lib/auth';
+import { authenticateUser, clearSession, getSession, setSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
 export async function login(role: string, email: string = 'test@example.com') {
@@ -52,6 +52,9 @@ export async function completeOnboarding() {
     ...session,
     hasCompletedOnboarding: true,
   };
+  
+  // Update the session in cookies
+  await setSession(updatedSession);
   
   // In a real app, you'd also update the user record in the database
   // For now, we'll just redirect to the dashboard

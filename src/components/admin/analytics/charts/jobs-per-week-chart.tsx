@@ -15,8 +15,14 @@ const chartConfig = {
   },
 };
 
+interface JobsPerWeekData {
+  week: string;
+  scheduled: number;
+  completed: number;
+}
+
 export function JobsPerWeekChart() {
-  const [chartData, setChartData] = useState<any[]>([]);
+  const [chartData] = useState<JobsPerWeekData[]>([]);
 
   useEffect(() => {
     // In a real app, you would fetch this data.

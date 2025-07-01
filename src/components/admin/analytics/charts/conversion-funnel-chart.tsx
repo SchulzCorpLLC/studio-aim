@@ -9,8 +9,13 @@ const chartConfig = {
   name: { label: 'Stage' },
 };
 
+interface FunnelData {
+  name: string;
+  value: number;
+}
+
 export function ConversionFunnelChart() {
-  const [chartData, setChartData] = useState<any[]>([]);
+  const [chartData] = useState<FunnelData[]>([]);
 
   useEffect(() => {
     // In a real app, you would fetch this data.

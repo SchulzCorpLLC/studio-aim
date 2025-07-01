@@ -1,11 +1,11 @@
 'use client';
 import type { Vehicle } from '../mock-data';
 import Image from 'next/image';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreVertical, Pencil, Trash2, Wrench, CheckCircle2, XCircle, Clock } from 'lucide-react';
+import { MoreVertical, Pencil, Trash2, Wrench, CheckCircle2, Clock } from 'lucide-react';
 
 interface VehicleCardProps {
     vehicle: Vehicle;

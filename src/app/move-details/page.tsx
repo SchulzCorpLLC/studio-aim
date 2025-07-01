@@ -3,12 +3,11 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { Home, MapPin, Clock, Calendar, CheckSquare, Wallet, ArrowRight, Truck, MessageCircle, Phone, Package, Info } from 'lucide-react';
+import { Calendar, Wallet, ArrowRight, Truck, MessageCircle, Phone, Package, Info } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 // Component for the map tracker
 const GpsMapTracker = () => (

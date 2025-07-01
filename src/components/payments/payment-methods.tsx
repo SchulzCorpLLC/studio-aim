@@ -2,21 +2,19 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import type { PaymentMethod } from "./payments-data";
 import { CreditCard, PlusCircle, Trash2, Star } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface PaymentMethodsProps {
   methods: PaymentMethod[];
   onAdd: () => void;
   onRemove: (methodId: string) => void;
-  onSetDefault: (methodId: string) => void;
 }
 
-const CardIcon = ({ type }: { type: PaymentMethod['type'] }) => {
+const CardIcon = () => {
     // In a real app, you'd use brand icons. For now, a generic one.
     return <CreditCard className="h-8 w-8" />;
 }
 
-export function PaymentMethods({ methods, onAdd, onRemove, onSetDefault }: PaymentMethodsProps) {
+export function PaymentMethods({ methods, onAdd, onRemove }: PaymentMethodsProps) {
   return (
     <Card className="h-full">
       <CardHeader>
@@ -27,7 +25,7 @@ export function PaymentMethods({ methods, onAdd, onRemove, onSetDefault }: Payme
         <div className="space-y-4 flex-grow">
           {methods.map((method) => (
             <div key={method.id} className="p-3 rounded-lg bg-muted/50 flex items-center gap-4">
-              <CardIcon type={method.type} />
+              <CardIcon />
               <div className="flex-grow">
                 <p className="font-semibold">{method.type} •••• {method.last4}</p>
                 <p className="text-sm text-muted-foreground">Expires {method.expiry}</p>

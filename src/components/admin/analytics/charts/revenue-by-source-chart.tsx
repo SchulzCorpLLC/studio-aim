@@ -12,8 +12,13 @@ const chartConfig = {
   repeat: { label: 'Repeat', color: 'hsl(var(--chart-4))' },
 };
 
+interface RevenueSourceData {
+  source: string;
+  revenue: number;
+}
+
 export function RevenueBySourceChart() {
-  const [chartData, setChartData] = useState<any[]>([]);
+  const [chartData] = useState<RevenueSourceData[]>([]);
 
   useEffect(() => {
     // In a real app, you would fetch this data.

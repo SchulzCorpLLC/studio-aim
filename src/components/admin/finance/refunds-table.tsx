@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal, CheckCircle, XCircle, Clock } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface RefundsTableProps {
     refunds: Refund[];
