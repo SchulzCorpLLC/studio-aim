@@ -15,6 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import { CalendarIcon, CheckCircle2, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { completeOnboarding } from '@/app/actions';
 
 export function RequestQuoteForm() {
   const router = useRouter();
@@ -22,15 +23,22 @@ export function RequestQuoteForm() {
   const [moveDate, setMoveDate] = useState<Date>();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: 'Quote Request Sent!',
       description: 'We will get back to you shortly. Redirecting you to the dashboard...',
     });
     setIsSubmitted(true);
-    setTimeout(() => {
-      router.push('/');
+    
+    // Mark onboarding as complete and redirect to dashboard
+    setTimeout(async () => {
+      try {
+        await completeOnboarding();
+      } catch (error) {
+        console.error('Error completing onboarding:', error);
+        router.push('/dashboard');
+      }
     }, 2000);
   };
 
@@ -46,7 +54,7 @@ export function RequestQuoteForm() {
             <p className="text-center text-muted-foreground">We are preparing your quote and will notify you via email shortly. You will now be redirected to your dashboard.</p>
         </CardContent>
         <CardFooter>
-            <Button className="w-full" onClick={() => router.push('/')}>
+            <Button className="w-full" onClick={() => router.push('/dashboard')}>
                 Go to Dashboard
                 <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -59,7 +67,7 @@ export function RequestQuoteForm() {
     <Card className="w-full max-w-2xl">
       <CardHeader>
         <CardTitle className="text-3xl">Get a Free Moving Quote</CardTitle>
-        <CardDescription>Tell us about your move, and we’ll get back to you with a quote in 24 hours.</CardDescription>
+        <CardDescription>Tell us about your move, and we'll get back to you with a quote in 24 hours.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-6">

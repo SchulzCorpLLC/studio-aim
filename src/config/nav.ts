@@ -1,4 +1,3 @@
-
 import type { LucideIcon } from 'lucide-react';
 import {
   LayoutDashboard,
@@ -24,7 +23,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   {
-    href: '/',
+    href: '/dashboard',
     label: 'Dashboard',
     icon: LayoutDashboard,
   },

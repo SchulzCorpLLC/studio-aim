@@ -21,11 +21,13 @@ import { login } from '@/app/actions';
 
 export default function LoginPage() {
   const [role, setRole] = useState('client');
+  const [email, setEmail] = useState('test@example.com');
+  const [password, setPassword] = useState('password');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd pass credentials here
-    await login(role);
+    // Pass the email to the login function for proper authentication flow
+    await login(role, email);
   };
 
   return (
@@ -42,7 +44,8 @@ export default function LoginPage() {
               type="email"
               placeholder="m@example.com"
               required
-              defaultValue="test@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-2">
@@ -55,7 +58,13 @@ export default function LoginPage() {
                 Forgot your password?
               </Link>
             </div>
-            <Input id="password" type="password" required defaultValue="password" />
+            <Input 
+              id="password" 
+              type="password" 
+              required 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="role">Login as</Label>

@@ -22,10 +22,13 @@ import { signup } from '@/app/actions';
 
 export default function SignupPage() {
   const [role, setRole] = useState('client');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    await signup(role);
+    await signup(role, email);
   };
 
   return (
@@ -40,7 +43,13 @@ export default function SignupPage() {
         <form onSubmit={handleSignup} className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="full-name">Full Name</Label>
-            <Input id="full-name" placeholder="Alex Doe" required />
+            <Input 
+              id="full-name" 
+              placeholder="Alex Doe" 
+              required 
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
@@ -49,11 +58,19 @@ export default function SignupPage() {
               type="email"
               placeholder="m@example.com"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" required />
+            <Input 
+              id="password" 
+              type="password" 
+              required 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="role">I am a...</Label>
